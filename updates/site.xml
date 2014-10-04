@@ -3,7 +3,7 @@
    <description name="Simplifide Update Site" url="http://simplifide.com/html/updates">
       Update Site for Simplifide
    </description>
-   <feature url="features/com.simplifide.features_1.2.30.201410030718.jar" id="com.simplifide.features" version="1.2.30.201410030718">
+   <feature url="features/com.simplifide.features_1.2.30.201410032313.jar" id="com.simplifide.features" version="1.2.30.201410032313">
       <category name="Hardware"/>
    </feature>
    <category-def name="Hardware" label="Hardware"/>
