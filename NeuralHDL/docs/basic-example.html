@@ -1,0 +1,282 @@
+<!DOCTYPE HTML>
+<html lang="en" >
+    
+    <head>
+        
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>Examples | NeuralHDL</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 2.5.2">
+        
+        
+        <meta name="HandheldFriendly" content="true"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+        <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+        
+    <link rel="stylesheet" href="../gitbook/style.css">
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-mermaid-2/bower_components/mermaid/dist/mermaid.css">
+        
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-highlight/website.css">
+        
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-search/search.css">
+        
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-fontsettings/website.css">
+        
+    
+    
+
+        
+    
+    
+    <link rel="next" href="../docs/architecture.html" />
+    
+    
+    <link rel="prev" href="../docs/background.html" />
+    
+
+        <script src="../gitbook/plugins/gitbook-plugin-mermaid-2/bower_components/mermaid/dist/mermaid.min.js"></script><link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-mermaid-2/bower_components/mermaid/dist/mermaid.forest.css"></link>
+    </head>
+    <body>
+        
+        
+    <div class="book" data-level="3" data-chapter-title="Examples" data-filepath="docs/basic-example.md" data-basepath=".." data-revision="Sun Jul 02 2017 16:43:11 GMT-0700 (PDT)">
+    
+
+<div class="book-summary">
+    <nav role="navigation">
+        <ul class="summary">
+            
+            
+            
+            
+
+            
+
+            
+    
+        <li class="chapter " data-level="0" data-path="index.html">
+            
+                
+                    <a href="../index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                        Introduction
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1" data-path="docs/getting-started.html">
+            
+                
+                    <a href="../docs/getting-started.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.</b>
+                        
+                        Getting Started
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2" data-path="docs/background.html">
+            
+                
+                    <a href="../docs/background.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.</b>
+                        
+                        Background
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter active" data-level="3" data-path="docs/basic-example.html">
+            
+                
+                    <a href="../docs/basic-example.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.</b>
+                        
+                        Examples
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4" data-path="docs/architecture.html">
+            
+                
+                    <a href="../docs/architecture.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.</b>
+                        
+                        Hardware Architecture
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5" data-path="docs/language.html">
+            
+                
+                    <a href="../docs/language.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.</b>
+                        
+                        Language
+                    </a>
+            
+            
+        </li>
+    
+
+
+            
+            <li class="divider"></li>
+            <li>
+                <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+                    Published with GitBook
+                </a>
+            </li>
+            
+        </ul>
+    </nav>
+</div>
+
+    <div class="book-body">
+        <div class="body-inner">
+            <div class="book-header" role="navigation">
+    <!-- Actions Left -->
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../" >NeuralHDL</a>
+    </h1>
+</div>
+
+            <div class="page-wrapper" tabindex="-1" role="main">
+                <div class="page-inner">
+                
+                
+                    <section class="normal" id="section-">
+                    
+                        <h2 id="basic-examples">Basic Examples</h2>
+<p>A detailed description of these examples is coming but for now the blocks contain basic descriptions and links
+to the code and results.</p>
+<h3 id="single-stage-neural-network">Single Stage Neural Network</h3>
+<p>This is a simple test case which contains a network with a single stage with 6 inputs, 12 outputs utilizing 6 MAC blocks.</p>
+<p><br></p>
+<ul>
+<li><a href="https://github.com/andywag/NeuralHDL/blob/master/docs/results/SingleStage.ipynb" target="_blank">Results</a></li>
+<li><a href="https://github.com/andywag/NeuralHDL/tree/master/tests/simple" target="_blank">Output Directory - Generated Source and Results</a></li>
+<li><a href="https://github.com/andywag/NeuralHDL/tree/master/src/test/scala/com/simplifide/generate/neural/SingleStageTest.scala" target="_blank">Block Generator</a></li>
+</ul>
+<h3 id="two-stage-neural-network">Two Stage Neural Network</h3>
+<p>This is a simple test case which contains a network with 2 fully connected stages.
+<br></p>
+<ol>
+<li>The first stage has 6 inputs and 12 outputs and uses 6 MAC units</li>
+<li>The second stage has 12 inputs and 6 outputs and uses 6 MAC units</li>
+</ol>
+<p><br></p>
+<ul>
+<li><a href="https://github.com/andywag/NeuralHDL/blob/master/docs/results/TwoStage.ipynb" target="_blank">Results</a></li>
+<li><a href="https://github.com/andywag/NeuralHDL/tree/master/tests/full" target="_blank">Output Directory - Generated Source and Results</a></li>
+<li><a href="https://github.com/andywag/NeuralHDL/tree/master/src/test/scala/com/simplifide/generate/neural/DoubleStageTest.scala" target="_blank">Block Generator</a></li>
+</ul>
+<h3 id="three-stage-neural-network">Three Stage Neural Network</h3>
+<p>This is the first realistic test case which contains a 3 stage network with 12 hidden neurons.</p>
+<ol>
+<li>The first stage has 6 inputs and 12 outputs and uses 6 MAC units</li>
+<li>The second stage contains 12 inputs and 12 outputs and uses 6 MAC units</li>
+<li>The third stage has 12 inputs and 6 outputs and uses 6 MAC units</li>
+</ol>
+<ul>
+<li><a href="results/DoubleStage.jpynb">Results</a></li>
+<li><a href="../../tests/hidden">Output Directory - Generated Source and Results</a></li>
+<li><a href="../src/test/scala/com/simplifide/generate/neural/HiddenStageTest.scala">Block Generator</a></li>
+</ul>
+
+                    
+                    </section>
+                
+                
+                </div>
+            </div>
+        </div>
+
+        
+        <a href="../docs/background.html" class="navigation navigation-prev " aria-label="Previous page: Background"><i class="fa fa-angle-left"></i></a>
+        
+        
+        <a href="../docs/architecture.html" class="navigation navigation-next " aria-label="Next page: Hardware Architecture"><i class="fa fa-angle-right"></i></a>
+        
+    </div>
+</div>
+
+        
+<script src="../gitbook/app.js"></script>
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-mermaid-2/plugin.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-search/lunr.min.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-search/search.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-sharing/buttons.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-fontsettings/buttons.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-livereload/plugin.js"></script>
+    
+
+<script>
+require(["gitbook"], function(gitbook) {
+    var config = {"mermaid-2":{"theme":"forest"},"highlight":{},"search":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"livereload":{}};
+    gitbook.start(config);
+});
+</script>
+
+        
+    </body>
+    
+</html>
