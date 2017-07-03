@@ -52,7 +52,7 @@
     <body>
         
         
-    <div class="book" data-level="3" data-chapter-title="Examples" data-filepath="docs/basic-example.md" data-basepath=".." data-revision="Sun Jul 02 2017 16:43:11 GMT-0700 (PDT)">
+    <div class="book" data-level="3" data-chapter-title="Examples" data-filepath="docs/basic-example.md" data-basepath=".." data-revision="Sun Jul 02 2017 17:58:39 GMT-0700 (PDT)">
     
 
 <div class="book-summary">
@@ -193,20 +193,39 @@
 to the code and results.</p>
 <h3 id="single-stage-neural-network">Single Stage Neural Network</h3>
 <p>This is a simple test case which contains a network with a single stage with 6 inputs, 12 outputs utilizing 6 MAC blocks.</p>
-<p><br></p>
+<div class="mermaid">
+graph LR
+    Stage0[Stage - 6x12]
+    Input--&gt;Stage0
+    Stage0--&gt;Error
+    Stage0--&gt;Output
+    Error--&gt;Stage0
+</div>
+
 <ul>
 <li><a href="https://github.com/andywag/NeuralHDL/blob/master/docs/results/SingleStage.ipynb" target="_blank">Results</a></li>
 <li><a href="https://github.com/andywag/NeuralHDL/tree/master/tests/simple" target="_blank">Output Directory - Generated Source and Results</a></li>
 <li><a href="https://github.com/andywag/NeuralHDL/tree/master/src/test/scala/com/simplifide/generate/neural/SingleStageTest.scala" target="_blank">Block Generator</a></li>
 </ul>
 <h3 id="two-stage-neural-network">Two Stage Neural Network</h3>
-<p>This is a simple test case which contains a network with 2 fully connected stages.
-<br></p>
+<p>This is a simple test case which contains a network with 2 fully connected stages.</p>
 <ol>
 <li>The first stage has 6 inputs and 12 outputs and uses 6 MAC units</li>
 <li>The second stage has 12 inputs and 6 outputs and uses 6 MAC units</li>
 </ol>
-<p><br></p>
+<div class="mermaid">
+graph LR
+    Stage0[Stage - 6x12]
+    Stage1[Stage - 12x6]
+    Input--&gt;Stage0
+    Stage0--&gt;Stage1
+    Stage1--&gt;Stage0
+    Stage1--&gt;Error
+    Stage1--&gt;Output
+    Error--&gt;Stage1
+</div>
+
+
 <ul>
 <li><a href="https://github.com/andywag/NeuralHDL/blob/master/docs/results/TwoStage.ipynb" target="_blank">Results</a></li>
 <li><a href="https://github.com/andywag/NeuralHDL/tree/master/tests/full" target="_blank">Output Directory - Generated Source and Results</a></li>
@@ -219,6 +238,21 @@ to the code and results.</p>
 <li>The second stage contains 12 inputs and 12 outputs and uses 6 MAC units</li>
 <li>The third stage has 12 inputs and 6 outputs and uses 6 MAC units</li>
 </ol>
+<div class="mermaid">
+graph LR
+    Stage0[Stage - 6x12]
+    Stage1[Stage - 12x12]
+    Stage2[Stage - 12x6]
+    Input--&gt;Stage0
+    Stage0--&gt;Stage1
+    Stage1--&gt;Stage2
+    Stage2--&gt;Stage0
+    Stage2--&gt;Error
+    Stage2--&gt;Output
+    Error--&gt;Stage2
+</div>
+
+
 <ul>
 <li><a href="results/DoubleStage.jpynb">Results</a></li>
 <li><a href="../../tests/hidden">Output Directory - Generated Source and Results</a></li>
