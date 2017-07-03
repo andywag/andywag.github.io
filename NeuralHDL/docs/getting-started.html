@@ -52,7 +52,7 @@
     <body>
         
         
-    <div class="book" data-level="1" data-chapter-title="Getting Started" data-filepath="docs/getting-started.md" data-basepath=".." data-revision="Sun Jul 02 2017 17:58:39 GMT-0700 (PDT)">
+    <div class="book" data-level="1" data-chapter-title="Getting Started" data-filepath="docs/getting-started.md" data-basepath=".." data-revision="Mon Jul 03 2017 06:50:03 GMT-0700 (PDT)">
     
 
 <div class="book-summary">
@@ -188,35 +188,35 @@
                 
                     <section class="normal" id="section-">
                     
-                        <h2 id="getting-started">Getting Started</h2>
-<p>All that is required for this project is scala but other tools are useful for testing of the blocks. The
-current tools used for this project are :</p>
+                        <h1 id="getting-started">Getting Started</h1>
+<p>Scala is the only requirement for generation of the blocks but other tools listed below are used
+in the testing of the resulting cores. Please install these tools before getting started.</p>
 <ol>
 <li><a href="http://www.scala-sbt.org/" target="_blank">SBT</a> : Build tool to create cores and tests</li>
 <li><a href="https://www.jetbrains.com/idea/" target="_blank">Jetbrains IDEA</a> : Integrated Development Environment for editting</li>
 <li>[Verilator] (<a href="https://www.veripool.org/wiki/verilator" target="_blank">https://www.veripool.org/wiki/verilator</a>) : Free Verilog simulator</li>
-<li>[Python with Numpy]</li>
+<li>Python with Numpy and Scipy</li>
 </ol>
-<p><br>
-The tools above are optional for generating the RTL and test benches. The examples currently
-are using them for both simulation and testing so are required for that purpose. The examples can
-be run either on the command line or though the idea. The command line syntax is shown below.
-<br></p>
-<p>sbt test-only <code>test-name&gt;</code>
-<br>
-Example : <code>sbt test-only com.simplifide.generate.neural.DoubleStageTest</code></p>
-<h2 id="infrastructure-limitations">Infrastructure Limitations</h2>
-<p>The current framework is in an alpha state so there is the potential for issues with setup. There
-are also some run issues which are currently being addressed. The main one is the tests were initially
-designed to be completley handled in scala. Scala analysis tools are not at the level of numpy so the future
-top level will probably be run through python. Currently running is a 2 step process which requires generating
-and runnign the code in scala and testing in python.</p>
-<p><br>
-To run the full code and test for this example follow the steps below</p>
-<ol>
+<h2 id="running-basic-test">Running Basic Test</h2>
+<p>Scalatest is used for running generating the cores and running basic tests. To run a test use the
+following command or run the test inside the IDEA IDE. </p>
+<ul>
+<li>sbt test-only <code>test-name</code></li>
 <li><code>sbt test-only com.simplifide.generate.neural.DoubleStageTest</code></li>
+</ul>
+<p>To validate there are python scripts to check the results. For the case shown above.  </p>
+<ul>
 <li><code>python python/test/CheckDoubleNetwork.py</code></li>
-</ol>
+</ul>
+<h2 id="future-directions">Future Directions</h2>
+<p>The initial goal of this project was to have the design/test be completely self contained in a single
+environment (Scala). Scala has signal processing and math libraries but are not near the level of numpy. 
+Because of this the testing is now a hybrid between scala and python but is long term going to move 
+to python. </p>
+<ul>
+<li><code>The current framework is in an alpha state and not fully productized so there is the potential for some
+issues with setup.</code> </li>
+</ul>
 
                     
                     </section>
