@@ -1,0 +1,280 @@
+<!DOCTYPE HTML>
+<html lang="en" >
+    
+    <head>
+        
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>Introduction | NeuralHDL</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="NeuralHDL is an internal DSL in scala for hardware design geared towards neural networks.The goal of this project will be to create (or expand) existing tool sets like DeepLearningForJ or CAFFE to directly generate and interface to hardware designs. This project is based on an existing general purpose hardware DSL (ScalaDL)which was used in the design of a highly parallel optical modem which has architectural similarities to neural networks.">
+        <meta name="generator" content="GitBook 2.5.2">
+        
+        
+        <meta name="HandheldFriendly" content="true"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="gitbook/images/apple-touch-icon-precomposed-152.png">
+        <link rel="shortcut icon" href="gitbook/images/favicon.ico" type="image/x-icon">
+        
+    <link rel="stylesheet" href="gitbook/style.css">
+    
+        
+        <link rel="stylesheet" href="gitbook/plugins/gitbook-plugin-mermaid-2/bower_components/mermaid/dist/mermaid.css">
+        
+    
+        
+        <link rel="stylesheet" href="gitbook/plugins/gitbook-plugin-highlight/website.css">
+        
+    
+        
+        <link rel="stylesheet" href="gitbook/plugins/gitbook-plugin-search/search.css">
+        
+    
+        
+        <link rel="stylesheet" href="gitbook/plugins/gitbook-plugin-fontsettings/website.css">
+        
+    
+    
+
+        
+    
+    
+    <link rel="next" href="./docs/getting-started.html" />
+    
+    
+
+        <script src="gitbook/plugins/gitbook-plugin-mermaid-2/bower_components/mermaid/dist/mermaid.min.js"></script><link rel="stylesheet" href="gitbook/plugins/gitbook-plugin-mermaid-2/bower_components/mermaid/dist/mermaid.forest.css"></link>
+    </head>
+    <body>
+        
+        
+    <div class="book" data-level="0" data-chapter-title="Introduction" data-filepath="README.md" data-basepath="." data-revision="Sun Jul 02 2017 16:43:11 GMT-0700 (PDT)">
+    
+
+<div class="book-summary">
+    <nav role="navigation">
+        <ul class="summary">
+            
+            
+            
+            
+
+            
+
+            
+    
+        <li class="chapter active" data-level="0" data-path="index.html">
+            
+                
+                    <a href="./index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                        Introduction
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1" data-path="docs/getting-started.html">
+            
+                
+                    <a href="./docs/getting-started.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.</b>
+                        
+                        Getting Started
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2" data-path="docs/background.html">
+            
+                
+                    <a href="./docs/background.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.</b>
+                        
+                        Background
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3" data-path="docs/basic-example.html">
+            
+                
+                    <a href="./docs/basic-example.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.</b>
+                        
+                        Examples
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4" data-path="docs/architecture.html">
+            
+                
+                    <a href="./docs/architecture.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.</b>
+                        
+                        Hardware Architecture
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5" data-path="docs/language.html">
+            
+                
+                    <a href="./docs/language.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.</b>
+                        
+                        Language
+                    </a>
+            
+            
+        </li>
+    
+
+
+            
+            <li class="divider"></li>
+            <li>
+                <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+                    Published with GitBook
+                </a>
+            </li>
+            
+        </ul>
+    </nav>
+</div>
+
+    <div class="book-body">
+        <div class="body-inner">
+            <div class="book-header" role="navigation">
+    <!-- Actions Left -->
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="./" >NeuralHDL</a>
+    </h1>
+</div>
+
+            <div class="page-wrapper" tabindex="-1" role="main">
+                <div class="page-inner">
+                
+                
+                    <section class="normal" id="section-">
+                    
+                        <h1 id="neuralhdl">NeuralHDL</h1>
+<p>NeuralHDL is an internal DSL in scala for hardware design geared towards neural networks.
+The goal of this project will be to create (or expand) existing tool sets like <a href="https://deeplearning4j.org/" target="_blank">DeepLearningForJ</a> or <a href="http://caffe.berkeleyvision.org/" target="_blank">CAFFE</a> to directly generate and interface to hardware designs. This project is based on an existing general purpose hardware DSL (<a href="https://github.com/andywag/ScalaDL" target="_blank">ScalaDL</a>)
+which was used in the design of a highly parallel optical modem which has architectural similarities to neural networks.</p>
+<p>The relatively simple structure of neural networks is a good fit for DSL used to generate the structures which
+is already done in tools like CAFFE for software solutions. This design technique is also a good fit (if not better)
+for hardware designs which is the purpose of this project. The purpose of this tool will be to either expand or
+be an alternative for CAFFE like languages for hardware designs.</p>
+<p>A simple stage in caffe which is a json description is shown below.</p>
+<pre><code class="lang-json">layer {
+  name: <span class="hljs-string">&quot;conv1&quot;</span>
+  type: <span class="hljs-string">&quot;Convolution&quot;</span>
+  param { lr_mult: <span class="hljs-number">1</span> }
+  param { lr_mult: <span class="hljs-number">2</span> }
+  convolution_param {
+    num_output: <span class="hljs-number">20</span>
+   }
+  bottom: <span class="hljs-string">&quot;data&quot;</span>
+  top: <span class="hljs-string">&quot;conv1&quot;</span>
+}
+</code></pre>
+<p>A similar description for a stage is shown below for a stage description for this tool. A more descriptive DSL is in
+development but this structure will describe the parameters for a fully connected stage.</p>
+<pre><code class="lang-scala"><span class="hljs-type">NeuralStageInfo</span>((dataLength,outputLength), <span class="hljs-comment">// # Inputs, # Outputs</span>
+    dataLength,                            <span class="hljs-comment">// # Inputs</span>
+    dataFill,                              <span class="hljs-comment">// Fifo Depth for Input</span>
+    numberNeurons,                         <span class="hljs-comment">// Number of MAC Units to Share</span>
+    errorFill,                             <span class="hljs-comment">// Fifo Depth for Error Feedback</span>
+    outputFill)                            <span class="hljs-comment">// Fifo Depth for expected values</span>
+</code></pre>
+<h2 id="status">Status</h2>
+<p>The project is in an alpha stage and currently only supports a fully connected network based 
+on the architecture described in this document. The designs have also only been simulated using 
+verilator and have not been taken to production or protype. The design is fully parameterizable and
+the underlying language/toolset has been used to take designs to production so these are 
+short term issues but this is not recommended/ready for production use yet. </p>
+<p>For a quick look at the latest results please see : 
+<a href="https://github.com/andywag/NeuralHDL/blob/master/docs/results/TwoStage.ipynb" target="_blank">Two Stage Network Test Results</a></p>
+
+                    
+                    </section>
+                
+                
+                </div>
+            </div>
+        </div>
+
+        
+        
+        <a href="./docs/getting-started.html" class="navigation navigation-next navigation-unique" aria-label="Next page: Getting Started"><i class="fa fa-angle-right"></i></a>
+        
+    </div>
+</div>
+
+        
+<script src="gitbook/app.js"></script>
+
+    
+    <script src="gitbook/plugins/gitbook-plugin-mermaid-2/plugin.js"></script>
+    
+
+    
+    <script src="gitbook/plugins/gitbook-plugin-search/lunr.min.js"></script>
+    
+
+    
+    <script src="gitbook/plugins/gitbook-plugin-search/search.js"></script>
+    
+
+    
+    <script src="gitbook/plugins/gitbook-plugin-sharing/buttons.js"></script>
+    
+
+    
+    <script src="gitbook/plugins/gitbook-plugin-fontsettings/buttons.js"></script>
+    
+
+    
+    <script src="gitbook/plugins/gitbook-plugin-livereload/plugin.js"></script>
+    
+
+<script>
+require(["gitbook"], function(gitbook) {
+    var config = {"mermaid-2":{"theme":"forest"},"highlight":{},"search":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"livereload":{}};
+    gitbook.start(config);
+});
+</script>
+
+        
+    </body>
+    
+</html>
