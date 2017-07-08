@@ -50,7 +50,7 @@
     <body>
         
         
-    <div class="book" data-level="0" data-chapter-title="Introduction" data-filepath="README.md" data-basepath="." data-revision="Sun Jul 02 2017 16:43:11 GMT-0700 (PDT)">
+    <div class="book" data-level="0" data-chapter-title="Introduction" data-filepath="README.md" data-basepath="." data-revision="Fri Jul 07 2017 17:11:22 GMT-0700 (PDT)">
     
 
 <div class="book-summary">
@@ -123,10 +123,10 @@
             
         </li>
     
-        <li class="chapter " data-level="4" data-path="docs/architecture.html">
+        <li class="chapter " data-level="4" data-path="docs/architecture/index.html">
             
                 
-                    <a href="./docs/architecture.html">
+                    <a href="./docs/architecture/index.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -135,6 +135,102 @@
                         Hardware Architecture
                     </a>
             
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="4.1" data-path="docs/architecture/memory.html">
+            
+                
+                    <a href="./docs/architecture/memory.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.1.</b>
+                        
+                        Memory
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2" data-path="docs/architecture/stage.html">
+            
+                
+                    <a href="./docs/architecture/stage.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.2.</b>
+                        
+                        Neural Stage
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.3" data-path="docs/architecture/feedforward.html">
+            
+                
+                    <a href="./docs/architecture/feedforward.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.3.</b>
+                        
+                        Feedforward
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.4" data-path="docs/architecture/update.html">
+            
+                
+                    <a href="./docs/architecture/update.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.4.</b>
+                        
+                        Tap Update
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.5" data-path="docs/architecture/backpropagate.html">
+            
+                
+                    <a href="./docs/architecture/backpropagate.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.5.</b>
+                        
+                        Error Back Propagation
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.6" data-path="docs/architecture/future.html">
+            
+                
+                    <a href="./docs/architecture/future.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.6.</b>
+                        
+                        Future Directions
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
             
         </li>
     
@@ -216,14 +312,10 @@ development but this structure will describe the parameters for a fully connecte
     errorFill,                             <span class="hljs-comment">// Fifo Depth for Error Feedback</span>
     outputFill)                            <span class="hljs-comment">// Fifo Depth for expected values</span>
 </code></pre>
-<h2 id="status">Status</h2>
-<p>The project is in an alpha stage and currently only supports a fully connected network based 
-on the architecture described in this document. The designs have also only been simulated using 
-verilator and have not been taken to production or protype. The design is fully parameterizable and
-the underlying language/toolset has been used to take designs to production so these are 
-short term issues but this is not recommended/ready for production use yet. </p>
-<p>For a quick look at the latest results please see : 
-<a href="https://github.com/andywag/NeuralHDL/blob/master/docs/results/TwoStage.ipynb" target="_blank">Two Stage Network Test Results</a></p>
+<p>Detailed documentation describing usign the tool and results can be found at the link below. </p>
+<p><a href="https://andywag.github.io/NeuralHDL/index.html" target="_blank">Detailed Documentation</a></p>
+<p>An example project can be seen below which shows the basic operation and performance of a simple network. </p>
+<p><a href="https://github.com/andywag/NeuralHDL/blob/master/docs/results/TwoStage.ipynb" target="_blank">Two Stage Network Test Results</a></p>
 
                     
                     </section>
