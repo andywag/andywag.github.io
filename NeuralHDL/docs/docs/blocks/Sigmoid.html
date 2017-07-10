@@ -5,9 +5,9 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>Introduction | NeuralHDL</title>
+        <title>Sigmoid | NeuralHDL</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <meta name="description" content="NeuralHDL is an internal DSL written in scala for hardware design geared towards neural networks. The goal of this project is to create (or expand) a CAFFE like tool which supports generic neural network designs targetted towards generating hardware. This project is based on an existing general purpose hardware DSL (ScalaDL.which was used in the design of a highly parallel optical modem which has architectural similarities to neural networks.">
+        <meta name="description" content="">
         <meta name="generator" content="GitBook 2.5.2">
         
         
@@ -15,25 +15,25 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
         <meta name="apple-mobile-web-app-capable" content="yes">
         <meta name="apple-mobile-web-app-status-bar-style" content="black">
-        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="gitbook/images/apple-touch-icon-precomposed-152.png">
-        <link rel="shortcut icon" href="gitbook/images/favicon.ico" type="image/x-icon">
+        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../gitbook/images/apple-touch-icon-precomposed-152.png">
+        <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
         
-    <link rel="stylesheet" href="gitbook/style.css">
+    <link rel="stylesheet" href="../../gitbook/style.css">
     
         
-        <link rel="stylesheet" href="gitbook/plugins/gitbook-plugin-mermaid-2/bower_components/mermaid/dist/mermaid.css">
-        
-    
-        
-        <link rel="stylesheet" href="gitbook/plugins/gitbook-plugin-highlight/website.css">
+        <link rel="stylesheet" href="../../gitbook/plugins/gitbook-plugin-mermaid-2/bower_components/mermaid/dist/mermaid.css">
         
     
         
-        <link rel="stylesheet" href="gitbook/plugins/gitbook-plugin-search/search.css">
+        <link rel="stylesheet" href="../../gitbook/plugins/gitbook-plugin-highlight/website.css">
         
     
         
-        <link rel="stylesheet" href="gitbook/plugins/gitbook-plugin-fontsettings/website.css">
+        <link rel="stylesheet" href="../../gitbook/plugins/gitbook-plugin-search/search.css">
+        
+    
+        
+        <link rel="stylesheet" href="../../gitbook/plugins/gitbook-plugin-fontsettings/website.css">
         
     
     
@@ -41,16 +41,18 @@
         
     
     
-    <link rel="next" href="./docs/introduction/index.html" />
+    <link rel="next" href="../../docs/blocks/NeuralStage.html" />
     
+    
+    <link rel="prev" href="../../docs/blocks/Neuron.html" />
     
 
-        <script src="gitbook/plugins/gitbook-plugin-mermaid-2/bower_components/mermaid/dist/mermaid.min.js"></script><link rel="stylesheet" href="gitbook/plugins/gitbook-plugin-mermaid-2/bower_components/mermaid/dist/mermaid.forest.css"></link>
+        <script src="../../gitbook/plugins/gitbook-plugin-mermaid-2/bower_components/mermaid/dist/mermaid.min.js"></script><link rel="stylesheet" href="../../gitbook/plugins/gitbook-plugin-mermaid-2/bower_components/mermaid/dist/mermaid.forest.css"></link>
     </head>
     <body>
         
         
-    <div class="book" data-level="0" data-chapter-title="Introduction" data-filepath="README.md" data-basepath="." data-revision="Mon Jul 10 2017 16:11:59 GMT-0700 (PDT)">
+    <div class="book" data-level="4.2" data-chapter-title="Sigmoid" data-filepath="docs/blocks/Sigmoid.md" data-basepath="../.." data-revision="Mon Jul 10 2017 16:11:59 GMT-0700 (PDT)">
     
 
 <div class="book-summary">
@@ -65,10 +67,10 @@
 
             
     
-        <li class="chapter active" data-level="0" data-path="index.html">
+        <li class="chapter " data-level="0" data-path="index.html">
             
                 
-                    <a href="./index.html">
+                    <a href="../../index.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -81,7 +83,7 @@
         <li class="chapter " data-level="1" data-path="docs/introduction/index.html">
             
                 
-                    <a href="./docs/introduction/index.html">
+                    <a href="../../docs/introduction/index.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -97,7 +99,7 @@
         <li class="chapter " data-level="1.1" data-path="docs/introduction/getting-started.html">
             
                 
-                    <a href="./docs/introduction/getting-started.html">
+                    <a href="../../docs/introduction/getting-started.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -112,7 +114,7 @@
         <li class="chapter " data-level="1.2" data-path="docs/introduction/basic-example.html">
             
                 
-                    <a href="./docs/introduction/basic-example.html">
+                    <a href="../../docs/introduction/basic-example.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -127,7 +129,7 @@
         <li class="chapter " data-level="1.3" data-path="docs/introduction/background.html">
             
                 
-                    <a href="./docs/introduction/background.html">
+                    <a href="../../docs/introduction/background.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -147,7 +149,7 @@
         <li class="chapter " data-level="2" data-path="docs/dsl/index.html">
             
                 
-                    <a href="./docs/dsl/index.html">
+                    <a href="../../docs/dsl/index.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -162,7 +164,7 @@
         <li class="chapter " data-level="3" data-path="docs/architecture/index.html">
             
                 
-                    <a href="./docs/architecture/index.html">
+                    <a href="../../docs/architecture/index.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -178,7 +180,7 @@
         <li class="chapter " data-level="3.1" data-path="docs/architecture/stage.html">
             
                 
-                    <a href="./docs/architecture/stage.html">
+                    <a href="../../docs/architecture/stage.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -194,7 +196,7 @@
         <li class="chapter " data-level="3.1.1" data-path="docs/architecture/feedforward.html">
             
                 
-                    <a href="./docs/architecture/feedforward.html">
+                    <a href="../../docs/architecture/feedforward.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -209,7 +211,7 @@
         <li class="chapter " data-level="3.1.2" data-path="docs/architecture/update.html">
             
                 
-                    <a href="./docs/architecture/update.html">
+                    <a href="../../docs/architecture/update.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -224,7 +226,7 @@
         <li class="chapter " data-level="3.1.3" data-path="docs/architecture/backpropagate.html">
             
                 
-                    <a href="./docs/architecture/backpropagate.html">
+                    <a href="../../docs/architecture/backpropagate.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -239,7 +241,7 @@
         <li class="chapter " data-level="3.1.4" data-path="docs/architecture/memory.html">
             
                 
-                    <a href="./docs/architecture/memory.html">
+                    <a href="../../docs/architecture/memory.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -259,7 +261,7 @@
         <li class="chapter " data-level="3.2" data-path="docs/architecture/future.html">
             
                 
-                    <a href="./docs/architecture/future.html">
+                    <a href="../../docs/architecture/future.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -279,7 +281,7 @@
         <li class="chapter " data-level="4" data-path="docs/blocks/index.html">
             
                 
-                    <a href="./docs/blocks/index.html">
+                    <a href="../../docs/blocks/index.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -295,7 +297,7 @@
         <li class="chapter " data-level="4.1" data-path="docs/blocks/Neuron.html">
             
                 
-                    <a href="./docs/blocks/Neuron.html">
+                    <a href="../../docs/blocks/Neuron.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -307,10 +309,10 @@
             
         </li>
     
-        <li class="chapter " data-level="4.2" data-path="docs/blocks/Sigmoid.html">
+        <li class="chapter active" data-level="4.2" data-path="docs/blocks/Sigmoid.html">
             
                 
-                    <a href="./docs/blocks/Sigmoid.html">
+                    <a href="../../docs/blocks/Sigmoid.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -325,7 +327,7 @@
         <li class="chapter " data-level="4.3" data-path="docs/blocks/NeuralStage.html">
             
                 
-                    <a href="./docs/blocks/NeuralStage.html">
+                    <a href="../../docs/blocks/NeuralStage.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -345,7 +347,7 @@
         <li class="chapter " data-level="5" data-path="docs/language/index.html">
             
                 
-                    <a href="./docs/language/index.html">
+                    <a href="../../docs/language/index.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -380,7 +382,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="./" >NeuralHDL</a>
+        <a href="../../" >NeuralHDL</a>
     </h1>
 </div>
 
@@ -390,33 +392,24 @@
                 
                     <section class="normal" id="section-">
                     
-                        <h1 id="neuralhdl">NeuralHDL</h1>
-<p>NeuralHDL is an internal DSL written in scala for hardware design geared towards neural networks. The goal of this project is to create (or expand) a <a href="http://caffe.berkeleyvision.org/" target="_blank">CAFFE</a> like tool which supports generic neural network designs targetted towards generating hardware. This project is based on an existing general purpose hardware DSL (<a href="https://github.com/andywag/ScalaDL" target="_blank">ScalaDL</a>.
-which was used in the design of a highly parallel optical modem which has architectural similarities to neural networks.</p>
-<p>Detailed documentation using GitBook can be found here :  </p>
-<p><a href="https://andywag.github.io/NeuralHDL/index.html" target="_blank">Detailed Documentation</a></p>
-<p>The results of a simple example project can be seen below : </p>
-<p><a href="https://github.com/andywag/NeuralHDL/blob/master/docs/results/TwoStage.ipynb" target="_blank">Two Stage Network Test Results</a></p>
-<p>A simple stage in caffe which is a json description is shown below. </p>
-<pre><code class="lang-json">layer {
-  name: <span class="hljs-string">&quot;conv1&quot;</span>
-  type: <span class="hljs-string">&quot;Convolution&quot;</span>
-  param { lr_mult: <span class="hljs-number">1</span> }
-  param { lr_mult: <span class="hljs-number">2</span> }
-  convolution_param {
-    num_output: <span class="hljs-number">20</span>
-   }
-  bottom: <span class="hljs-string">&quot;data&quot;</span>
-  top: <span class="hljs-string">&quot;conv1&quot;</span>
-}
-</code></pre>
-<p>A similar description for a network stage for this tool is shown below. JSON if not CAFFE syntax could be easily implemented to support this structure but most like longer term a more descriptive DSL will be added.  </p>
-<pre><code class="lang-scala"><span class="hljs-type">NeuralStageInfo</span>((dataLength,outputLength), <span class="hljs-comment">// # Inputs, # Outputs</span>
-    dataFill,                              <span class="hljs-comment">// Fifo Depth for Input</span>
-    numberNeurons,                         <span class="hljs-comment">// Number of MAC Units to Share</span>
-    errorFill,                             <span class="hljs-comment">// Fifo Depth for Error Feedback</span>
-    outputFill)                            <span class="hljs-comment">// Fifo Depth for expected values</span>
-</code></pre>
+                        <h1 id="sigmoid-function">Sigmoid Function</h1>
+<p>The sigmoid function is a standard nonlinearity used for neurons. A hardware approximation of this function is shown below as an example. The approach uses 7 stage piecewise linear approximation.</p>
+<p>This block contains a sigmoid nonlinear operation based on &quot;Myers and Hutchinson&quot; piecewise linear approximation.
+There are a few slight differences in the operation to simplify things due to the floating point aspect but
+there output error has similar properties with a maximum error of ~4.8%. This block is more naturally done using
+fixed point which inherently is internally done in the internal shifters of this block</p>
+<h2 id="generator-code">Generator Code</h2>
+<p>The code used to generate this code is relatively complex and can be found below. Most of this complexity is related to the use of floating point and the effects of this operation around the zero crossing around an input of .5. This could be much simpler for a fixed point operation and given the magnitude of the error it would be correct to use fixed point.</p>
+<ul>
+<li><a href="https://github.com/andywag/NeuralHDL/tree/master/src/main/scala/com/simplifide/generate/blocks/neural//Sigmoid.scala" target="_blank">Code Generator</a></li>
+<li><a href="https://github.com/andywag/NeuralHDL/tree/master/tests/sigmoid/design/sigmoid.v" target="_blank">Verilog Output</a></li>
+</ul>
+<h2 id="testbench-code">Testbench Code</h2>
+<ul>
+<li><a href="https://github.com/andywag/NeuralHDL/tree/master/tests/sigmoid/test/testSigmoid.v" target="_blank">Testbench (Verilog)</a></li>
+<li><a href="https://github.com/andywag/NeuralHDL/tree/master/tests/sigmoid/test/testSigmoid.cpp" target="_blank">Test Wrapper (C++)</a></li>
+<li><a href="https://github.com/andywag/NeuralHDL/tree/master/src/test/scala/com/simplifide/generate/neural//SigmoidTest.scala" target="_blank">Test Generator</a></li>
+</ul>
 
                     
                     </section>
@@ -427,37 +420,39 @@ which was used in the design of a highly parallel optical modem which has archit
         </div>
 
         
+        <a href="../../docs/blocks/Neuron.html" class="navigation navigation-prev " aria-label="Previous page: Neuron"><i class="fa fa-angle-left"></i></a>
         
-        <a href="./docs/introduction/index.html" class="navigation navigation-next navigation-unique" aria-label="Next page: Introduction"><i class="fa fa-angle-right"></i></a>
+        
+        <a href="../../docs/blocks/NeuralStage.html" class="navigation navigation-next " aria-label="Next page: Neural Stage"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>
 
         
-<script src="gitbook/app.js"></script>
+<script src="../../gitbook/app.js"></script>
 
     
-    <script src="gitbook/plugins/gitbook-plugin-mermaid-2/plugin.js"></script>
-    
-
-    
-    <script src="gitbook/plugins/gitbook-plugin-search/lunr.min.js"></script>
+    <script src="../../gitbook/plugins/gitbook-plugin-mermaid-2/plugin.js"></script>
     
 
     
-    <script src="gitbook/plugins/gitbook-plugin-search/search.js"></script>
+    <script src="../../gitbook/plugins/gitbook-plugin-search/lunr.min.js"></script>
     
 
     
-    <script src="gitbook/plugins/gitbook-plugin-sharing/buttons.js"></script>
+    <script src="../../gitbook/plugins/gitbook-plugin-search/search.js"></script>
     
 
     
-    <script src="gitbook/plugins/gitbook-plugin-fontsettings/buttons.js"></script>
+    <script src="../../gitbook/plugins/gitbook-plugin-sharing/buttons.js"></script>
     
 
     
-    <script src="gitbook/plugins/gitbook-plugin-livereload/plugin.js"></script>
+    <script src="../../gitbook/plugins/gitbook-plugin-fontsettings/buttons.js"></script>
+    
+
+    
+    <script src="../../gitbook/plugins/gitbook-plugin-livereload/plugin.js"></script>
     
 
 <script>
