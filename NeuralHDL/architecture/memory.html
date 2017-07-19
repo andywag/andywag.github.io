@@ -25,6 +25,10 @@
         
     
         
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-katex/katex.min.css">
+        
+    
+        
         <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-highlight/website.css">
         
     
@@ -52,7 +56,7 @@
     <body>
         
         
-    <div class="book" data-level="3.1.4" data-chapter-title="Memory Layout" data-filepath="architecture/memory.md" data-basepath=".." data-revision="Wed Jul 12 2017 06:57:26 GMT-0700 (PDT)">
+    <div class="book" data-level="3.1.4" data-chapter-title="Memory Layout" data-filepath="architecture/memory.md" data-basepath=".." data-revision="Tue Jul 18 2017 23:26:12 GMT-0700 (PDT)">
     
 
 <div class="book-summary">
@@ -393,12 +397,13 @@
                     <section class="normal" id="section-">
                     
                         <h1 id="memory-layout">Memory Layout</h1>
-<p>The memory for each stage is split into 3 separate memories based on their size and frequency of use. Different memory architectures can be selected depending on the frequency of use and properites of the memories. This architecture assumes a memory running at the same rate as the neural stage and a dual port memory.</p>
+<p>The memory for each stage is split into 3 separate memories based on their size and frequency of use. This architecture assumes a dual port memory running at the same rate as the neural stage.  Different memory architectures can be selected depending on the frequency of use and properites of the memories as well as the properties of the data stored. </p>
 <ol>
 <li>Data Memory</li>
 <li>Bias Memory</li>
 <li>Tap and Error Memory</li>
 </ol>
+<hr>
 <p>The memory size of the model is fixed based on the size of the network, but the depths for the data and error require careful consideration to keep the network fully utilized. The main constraint for the network is the input data and error must be available at the same time to properly update the taps. This requires the data to be stored inside the block until the error is available or will halt the operations. </p>
 <h2 id="data-memory">Data Memory</h2>
 <p>The data memory contains the input data to the stage. This information is required for both the feedforward operation of the stage and the error updates. </p>
@@ -406,6 +411,7 @@
 <li>The memory read requires one data sample per stage calculation. </li>
 <li>The depth of the memory is a function of the maximum error feedback time and throughput requirements</li>
 </ol>
+<hr>
 <table>
 <thead>
 <tr>
@@ -449,7 +455,8 @@
 <li>K is the length of the input data vector</li>
 <li>N is ceil(log2(K))</li>
 </ul>
-<p><code>This mapping is innefficient but greatly eases both the addressing design as well as the debugging. This is used as a prototyping test and will be left as a mode for debug as well.</code></p>
+<hr>
+<p><code>This mapping is innefficient and obviously not a choice for production but greatly eases both the addressing design as well as the debugging. This is used as a prototyping test and will be left as a mode for debug as well.</code></p>
 <h2 id="bias-memory">Bias Memory</h2>
 <p>The bias memory contains the bias values from the network. </p>
 <ol>
@@ -458,11 +465,12 @@
 </ol>
 <p>The use of the bias term occurs at a later time than the data operation so there is the potential to delay the data with the read and write addresses. The effectiveness of this is limited somewhat by the bias update and bias use having different pipeline delays. </p>
 <h2 id="tap-and-error-memory">Tap and Error Memory</h2>
-<p>This is a parallel memory which has an output width which is a multiple of the number of MAC units used in the stage. The tap memory contains both the tap values for the stage as well as the error which simplifies the interface to the stage and reduces the memory requirements. </p>
+<p>The tap memory is a parallel memory which has an output width which is a multiple of the number of MAC units used in the stage. The tap memory contains both the tap values for the stage as well as the error which simplifies the interface to the stage and reduces the memory requirements.</p>
 <ol>
 <li>The memory requires one parallel read (number of neurons width) for each operation of the neural stage</li>
 <li>The depth of the memory is equivalent to the size of the taps plus the required error storage. </li>
 </ol>
+<hr>
 <p>The memory is assumed to have read/write access to individaul taps as well as the full set of parallel taps. This is used for </p>
 <table>
 <thead>
@@ -526,7 +534,7 @@
 </tr>
 </tbody>
 </table>
-<p>The contents of the tap and error memory is shown above. The memory contains a reshaped version of the taps with the row width equal to the number of neurons. </p>
+<p>The contents of the tap and error memory is shown above. The memory contains a reshaped version of the taps with the row width equal to the number of neurons. This internal format makes operation of the network more straightforward. </p>
 
                     
                     </section>
@@ -574,7 +582,7 @@
 
 <script>
 require(["gitbook"], function(gitbook) {
-    var config = {"mermaid-2":{"theme":"forest"},"highlight":{},"search":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"livereload":{}};
+    var config = {"mermaid-2":{"theme":"forest"},"katex":{},"highlight":{},"search":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"livereload":{}};
     gitbook.start(config);
 });
 </script>

@@ -25,6 +25,10 @@
         
     
         
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-katex/katex.min.css">
+        
+    
+        
         <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-highlight/website.css">
         
     
@@ -52,7 +56,7 @@
     <body>
         
         
-    <div class="book" data-level="1" data-chapter-title="Introduction" data-filepath="introduction/README.md" data-basepath=".." data-revision="Wed Jul 12 2017 06:57:26 GMT-0700 (PDT)">
+    <div class="book" data-level="1" data-chapter-title="Introduction" data-filepath="introduction/README.md" data-basepath=".." data-revision="Tue Jul 18 2017 23:26:12 GMT-0700 (PDT)">
     
 
 <div class="book-summary">
@@ -392,7 +396,13 @@
                 
                     <section class="normal" id="section-">
                     
-                        
+                        <h1 id="neuralhdl">NeuralHDL</h1>
+<p>NeuralHDL is an internal DSL written in scala for hardware design geared towards neural networks. The goal of this project is to create (or expand) a <a href="http://caffe.berkeleyvision.org/" target="_blank">CAFFE</a> like tool which supports generic neural network designs targetted towards generating configurable hardware. This project is an extension of an existing general purpose hardware DSL (<a href="https://github.com/andywag/ScalaDL" target="_blank">ScalaDL</a> used in the design of a highly parallel optical modem which has architectural similarities to neural networks.</p>
+<p>Detailed documentation and instructions for use can be found here :  </p>
+<p><a href="https://andywag.github.io/NeuralHDL/index.html" target="_blank">Detailed Documentation</a></p>
+<p>The results of a simple example project can be seen below. </p>
+<p><a href="https://github.com/andywag/NeuralHDL/blob/master/docs/results/TwoStage.ipynb" target="_blank">Two Stage Network Test Results</a></p>
+
                     
                     </section>
                 
@@ -439,7 +449,7 @@
 
 <script>
 require(["gitbook"], function(gitbook) {
-    var config = {"mermaid-2":{"theme":"forest"},"highlight":{},"search":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"livereload":{}};
+    var config = {"mermaid-2":{"theme":"forest"},"katex":{},"highlight":{},"search":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"livereload":{}};
     gitbook.start(config);
 });
 </script>

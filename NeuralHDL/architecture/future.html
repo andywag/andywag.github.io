@@ -25,6 +25,10 @@
         
     
         
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-katex/katex.min.css">
+        
+    
+        
         <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-highlight/website.css">
         
     
@@ -52,7 +56,7 @@
     <body>
         
         
-    <div class="book" data-level="3.2" data-chapter-title="Future Directions" data-filepath="architecture/future.md" data-basepath=".." data-revision="Wed Jul 12 2017 06:57:26 GMT-0700 (PDT)">
+    <div class="book" data-level="3.2" data-chapter-title="Future Directions" data-filepath="architecture/future.md" data-basepath=".." data-revision="Tue Jul 18 2017 23:26:12 GMT-0700 (PDT)">
     
 
 <div class="book-summary">
@@ -394,7 +398,7 @@
                     
                         <h1 id="future-directions-for-architecture">Future Directions for Architecture</h1>
 <p>The architecture used for this document is just one implementation possible using this toolset. Certain non-optimal choices were made which could/should be improved in future versions.</p>
-<h2 id="floating-point-">Floating Point :</h2>
+<h2 id="floating-point">Floating Point</h2>
 <p>Floating point was chosen to ease quantization issues but ended up leading to more issues than it solved. The quantization issues for this development were relatively small and almost all were related to the choice of floating point. The generator is built to use arbitrary precisions but this code hasn&apos;t been tested with fixed point. </p>
 <h2 id="memory-packing">Memory Packing</h2>
 <p>The memories indexing is based on a power of 2 for operations which is inneficient in terms of space. This was done in the devlopment to ease debugging but should be compressed in future revisions. </p>
@@ -445,7 +449,7 @@
 
 <script>
 require(["gitbook"], function(gitbook) {
-    var config = {"mermaid-2":{"theme":"forest"},"highlight":{},"search":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"livereload":{}};
+    var config = {"mermaid-2":{"theme":"forest"},"katex":{},"highlight":{},"search":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"livereload":{}};
     gitbook.start(config);
 });
 </script>

@@ -25,6 +25,10 @@
         
     
         
+        <link rel="stylesheet" href="gitbook/plugins/gitbook-plugin-katex/katex.min.css">
+        
+    
+        
         <link rel="stylesheet" href="gitbook/plugins/gitbook-plugin-highlight/website.css">
         
     
@@ -50,7 +54,7 @@
     <body>
         
         
-    <div class="book" data-level="0" data-chapter-title="Introduction" data-filepath="README.md" data-basepath="." data-revision="Wed Jul 12 2017 06:57:26 GMT-0700 (PDT)">
+    <div class="book" data-level="0" data-chapter-title="Introduction" data-filepath="README.md" data-basepath="." data-revision="Tue Jul 18 2017 23:26:12 GMT-0700 (PDT)">
     
 
 <div class="book-summary">
@@ -393,9 +397,18 @@
                         <h1 id="neuralhdl">NeuralHDL</h1>
 <p>NeuralHDL is an internal DSL written in scala for hardware design geared towards neural networks. The goal of this project is to create (or expand) a <a href="http://caffe.berkeleyvision.org/" target="_blank">CAFFE</a> like tool which supports generic neural network designs targetted towards generating configurable hardware. This project is an extension of an existing general purpose hardware DSL (<a href="https://github.com/andywag/ScalaDL" target="_blank">ScalaDL</a> used in the design of a highly parallel optical modem which has architectural similarities to neural networks.</p>
 <p>Detailed documentation and instructions for use can be found here :  </p>
-<p><a href="https://andywag.github.io/NeuralHDL/index.html" target="_blank">Detailed Documentation</a></p>
+<ul>
+<li><a href="https://andywag.github.io/NeuralHDL/index.html" target="_blank">Detailed Documentation</a></li>
+</ul>
 <p>The results of a simple example project can be seen below. </p>
-<p><a href="https://github.com/andywag/NeuralHDL/blob/master/docs/results/TwoStage.ipynb" target="_blank">Two Stage Network Test Results</a></p>
+<ul>
+<li><a href="https://github.com/andywag/NeuralHDL/blob/master/docs/results/TwoStage.ipynb" target="_blank">Two Stage Network Test Results</a></li>
+<li><a href="https://github.com/andywag/NeuralHDL/blob/master/docs/results/HigherStage.ipynb" target="_blank">Multi Stage Network Test Results</a></li>
+</ul>
+<h1 id="status--next-steps">Status - Next Steps</h1>
+<p>This project was started to assess the feasability of creating a configural neural network based on a simple input description and to look into hardware architectures for neural networks. At this point in time those goals have been met. This toolset can generate a configurable fully connected neural network with some limitations. This is a small subset of the possible configuration but the infrastructure is in place to easily generalize to more complicated architectures. </p>
+<p>There are many possible improvements but even configurable hardware architectures differ depending on the requirements of the problem. At this point, there is an effort to clean up some of the control bugs limiting the configurability and study the convergence properties, but the next step would require an actual application. </p>
+<p>If anyone has an interest/application which this toolset would fit into please contact me to discuss. </p>
 
                     
                     </section>
@@ -441,7 +454,7 @@
 
 <script>
 require(["gitbook"], function(gitbook) {
-    var config = {"mermaid-2":{"theme":"forest"},"highlight":{},"search":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"livereload":{}};
+    var config = {"mermaid-2":{"theme":"forest"},"katex":{},"highlight":{},"search":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"livereload":{}};
     gitbook.start(config);
 });
 </script>

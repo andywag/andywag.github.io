@@ -25,6 +25,10 @@
         
     
         
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-katex/katex.min.css">
+        
+    
+        
         <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-highlight/website.css">
         
     
@@ -52,7 +56,7 @@
     <body>
         
         
-    <div class="book" data-level="3.1.1" data-chapter-title="Feedforward" data-filepath="architecture/feedforward.md" data-basepath=".." data-revision="Wed Jul 12 2017 06:57:26 GMT-0700 (PDT)">
+    <div class="book" data-level="3.1.1" data-chapter-title="Feedforward" data-filepath="architecture/feedforward.md" data-basepath=".." data-revision="Tue Jul 18 2017 23:26:12 GMT-0700 (PDT)">
     
 
 <div class="book-summary">
@@ -393,11 +397,11 @@
                     <section class="normal" id="section-">
                     
                         <h1 id="feedforward-operation">Feedforward operation</h1>
-<p>The feedforward operation consists of a matrix multiplication, a vector bias addition and a non-linear operation. The operation has a serial input and output with parallel operations done using the MAC units.  </p>
-<ul>
-<li>equation TBD</li>
-</ul>
-<p>A block diagram of the operation is shown below. The block contains N shared MAC units, a delay line, a bias addition followed by a non-linearity. </p>
+<p>The feedforward operation consists of a matrix multiplication, bias addition and nonlinear operation. </p>
+<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>y</mi><mo>=</mo><mi>f</mi><mo>(</mo><mi>H</mi><mi>x</mi><mo>+</mo><mi>b</mi></mrow><annotation encoding="application/x-tex">y = f(Hx + b</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.75em;"></span><span class="strut bottom" style="height:1em;vertical-align:-0.25em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.03588em;">y</span><span class="mrel">=</span><span class="mord mathit" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord mathit" style="margin-right:0.08125em;">H</span><span class="mord mathit">x</span><span class="mbin">+</span><span class="mord mathit">b</span></span></span></span>)</p>
+<p>This is done using MAC units in parallel and a vector bias addition and non-linear operation serially. </p>
+<hr>
+<p>A block diagram of the operation is shown below. The block contains N shared MAC units, a delay line, a bias addition followed by a non-linearity. The input data comes in serially and the output data is converted to parallel through the delay line. </p>
 <div class="mermaid">
 graph LR
     Add(+)
@@ -429,14 +433,21 @@ graph LR
 
 
 <h2 id="data-flow">Data Flow</h2>
-<p>The data flow operates as follows : </p>
+<p>The data flow of the system is selected to avoid an adder tree and minimimize memory access. This ordering is shown below when the number of MAC units can split the matrix in 4 sections. </p>
+<hr>
+<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mrow><mo fence="true">(</mo><mtable><mtr><mtd><mrow><mn>1</mn><mi>s</mi><mi>t</mi></mrow></mtd><mtd><mrow><mn>2</mn><mi>n</mi><mi>d</mi></mrow></mtd></mtr><mtr><mtd><mrow><mn>3</mn><mi>r</mi><mi>d</mi></mrow></mtd><mtd><mrow><mn>4</mn><mi>t</mi><mi>h</mi></mrow></mtd></mtr></mtable><mo fence="true">)</mo></mrow></mrow><annotation encoding="application/x-tex">\left(\begin{matrix}
+  1st &amp; 2nd \\
+  3rd &amp; 4th
+\end{matrix}\right)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:1.45em;"></span><span class="strut bottom" style="height:2.40003em;vertical-align:-0.95003em;"></span><span class="base textstyle uncramped"><span class="minner textstyle uncramped"><span class="mopen style-wrap reset-textstyle textstyle uncramped" style="top:0em;"><span class="delimsizing size3">(</span></span><span class="mord"><span class="mtable"><span class="col-align-c"><span class="vlist"><span style="top:-0.6099999999999999em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="mord textstyle uncramped"><span class="mord mathrm">1</span><span class="mord mathit">s</span><span class="mord mathit">t</span></span></span><span style="top:0.5900000000000003em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="mord textstyle uncramped"><span class="mord mathrm">3</span><span class="mord mathit" style="margin-right:0.02778em;">r</span><span class="mord mathit">d</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span><span class="arraycolsep" style="width:0.5em;"></span><span class="arraycolsep" style="width:0.5em;"></span><span class="col-align-c"><span class="vlist"><span style="top:-0.6099999999999999em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="mord textstyle uncramped"><span class="mord mathrm">2</span><span class="mord mathit">n</span><span class="mord mathit">d</span></span></span><span style="top:0.5900000000000003em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="mord textstyle uncramped"><span class="mord mathrm">4</span><span class="mord mathit">t</span><span class="mord mathit">h</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span></span></span><span class="mclose style-wrap reset-textstyle textstyle uncramped" style="top:0em;"><span class="delimsizing size3">)</span></span></span></span></span></span></p>
+<hr>
 <ol>
 <li>The input data is multiplied by the taps with the data being input at 1 sample per input </li>
 <li>The accumulator takes the previous results unless it is the first input sample</li>
 <li>When the summation is complete the parallel outputs are latched into a delay line</li>
-<li>The delay line is fed serially into the bias circuit. <code>This could/should be done using the accumulator</code></li>
+<li>The delay line is fed serially into the bias circuit. </li>
 <li>The output of the bias addition block is fed into the nonlinearity and output serially</li>
 </ol>
+<hr>
 <p>The access ordering is shown in the table below for an example which has K MAC units and N total inputs. The ordering is always done so that an output is completed without having to be stored back into memory. </p>
 <table>
 <thead>
@@ -523,7 +534,7 @@ graph LR
 
 <script>
 require(["gitbook"], function(gitbook) {
-    var config = {"mermaid-2":{"theme":"forest"},"highlight":{},"search":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"livereload":{}};
+    var config = {"mermaid-2":{"theme":"forest"},"katex":{},"highlight":{},"search":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"livereload":{}};
     gitbook.start(config);
 });
 </script>

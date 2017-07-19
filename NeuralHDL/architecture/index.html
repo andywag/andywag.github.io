@@ -25,6 +25,10 @@
         
     
         
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-katex/katex.min.css">
+        
+    
+        
         <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-highlight/website.css">
         
     
@@ -52,7 +56,7 @@
     <body>
         
         
-    <div class="book" data-level="3" data-chapter-title="Hardware Architecture" data-filepath="architecture/README.md" data-basepath=".." data-revision="Wed Jul 12 2017 06:57:26 GMT-0700 (PDT)">
+    <div class="book" data-level="3" data-chapter-title="Hardware Architecture" data-filepath="architecture/README.md" data-basepath=".." data-revision="Tue Jul 18 2017 23:26:12 GMT-0700 (PDT)">
     
 
 <div class="book-summary">
@@ -393,21 +397,25 @@
                     <section class="normal" id="section-">
                     
                         <h1 id="hardware-architecture">Hardware Architecture</h1>
-<p>There are many different architectural tradeoffs which are possible for neural networks. This section defines an architecture chosen which minimizes complexity for the example designs used and most likely a large subset of designs. Like most hardware designs the proper architectural solution varies depending on the use case. The infrastructure supports architectural changes so that designs can be targetted to the exact requirements. </p>
+<p>There are many different architectural tradeoffs possible for neural networks. This section defines an architecture chosen which minimizes complexity for the example designs used and most likely a large subset of designs. Like most hardware designs the proper architectural solution varies depending on the use case. The infrastructure supports architectural changes so that designs can be targetted to the exact requirements. </p>
 <h1 id="top-level-architecture">Top Level Architecture</h1>
-<p>The top level architecture for this design consists of a set of a top level which contains a set of independent stages attached using FIFOs on the block input path and streaming interfaces on the outputs. This choice was selected to avoid the complexity of having the internal neural stages support different operations in parallel. Each stage does the complete feedforward operation, tap update or back propagation work until complete. The pipeline stages and timing differ between operations making handling parallelism difficult. </p>
+<p>The top level architecture for this design consists of a set of independent stages attached using FIFOs on the block input path and streaming interfaces on the outputs. This choice was selected to avoid the complexity of having the internal neural stages support different operations in parallel. Each stage does the complete feedforward operation, tap update or back propagation work until complete.  </p>
 <p>A basic block diagram is shown below. </p>
-<p>graph LR;</p>
-<p>input--&gt;stage0
+<div class="mermaid">
+graph LR;
+
+input--&gt;stage0
 stage0--&gt;|output|stage1
 stage1--&gt;|error|stage0
 stage1--&gt;|output|stageN
 stageN--&gt;|error|stage1
 stageN--&gt;|output|error
-error--&gt;|error|stageN</p>
+error--&gt;|error|stageN
+</div>
+
 <p>Each block outputs the results of the feedforward operation and inputs the error from the future block in the chain for use in back-propagation mode for the network. </p>
 <h2 id="main-building-block">Main Building Block</h2>
-<p>The building block for the design is shown in the block diagram below at a high level below. The block consists of </p>
+<p>The main building block of the design is shown below and consists of </p>
 <ul>
 <li>Fifos for the inputs (Input Data forward, Error Data Backward)</li>
 <li>Memories to store the state of the model</li>
@@ -427,13 +435,14 @@ Control--&gt;Memory
 </div>
 
 <h2 id="operation">Operation</h2>
-<p>The operation of the network is self contained. Each stage of the network does 3 basic operations which are done using the same hardware and are time multiplexed based on the ordering below. </p>
+<p>The operation of each stage of the network is self contained. Each stage of the network does 3 basic operations which are done using the same hardware and are time multiplexed based on the ordering below. </p>
 <ol>
 <li>Error Back Propagation</li>
 <li>Tap/Bias Updates</li>
 <li>Feedforward Propagation</li>
 </ol>
-<p>The precedence of these operations was selected to maximize network throughput and minimize memory depth by giving precedence to feeding the error backward. This choice is because the tap updates require both the data and error to be used together so longer network delays requires larger memory depth. </p>
+<hr>
+<p>The precedence of these operations was selected to maximize network throughput and minimize memory depth by giving precedence to feeding the error backward. This choice propagates the error back through the network as quickly as possible to minimize delay and required memory depth. </p>
 
                     
                     </section>
@@ -481,7 +490,7 @@ Control--&gt;Memory
 
 <script>
 require(["gitbook"], function(gitbook) {
-    var config = {"mermaid-2":{"theme":"forest"},"highlight":{},"search":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"livereload":{}};
+    var config = {"mermaid-2":{"theme":"forest"},"katex":{},"highlight":{},"search":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"livereload":{}};
     gitbook.start(config);
 });
 </script>

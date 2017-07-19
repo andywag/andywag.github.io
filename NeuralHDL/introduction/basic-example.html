@@ -25,6 +25,10 @@
         
     
         
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-katex/katex.min.css">
+        
+    
+        
         <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-highlight/website.css">
         
     
@@ -52,7 +56,7 @@
     <body>
         
         
-    <div class="book" data-level="1.2" data-chapter-title="Examples" data-filepath="introduction/basic-example.md" data-basepath=".." data-revision="Wed Jul 12 2017 06:57:26 GMT-0700 (PDT)">
+    <div class="book" data-level="1.2" data-chapter-title="Examples" data-filepath="introduction/basic-example.md" data-basepath=".." data-revision="Tue Jul 18 2017 23:26:12 GMT-0700 (PDT)">
     
 
 <div class="book-summary">
@@ -393,7 +397,7 @@
                     <section class="normal" id="section-">
                     
                         <h1 id="basic-examples">Basic Examples</h1>
-<p>The purpose of the examples in this section are to prove out the hardware design created by generated and not to delve into the signal processings of the network. All of the networks created use the same basic infrastructure which is generalized to test different settings in terms of inputs and outputs. The examples also contain building block tests which are used to verify the functionallity of the network by testing each stage individually. The testing starts with a single stage and then is expanded to larger networks. </p>
+<p>The purpose of the examples in this section are to prove out the hardware design created by generated and not delve into the signal processings of the network. All of the networks created use the same basic infrastructure which are generalized to test network configurations. The examples also contain building block tests which are used to verify the functionallity of the network by testing each stage individually. The examples shown below starts with a single stage network and then is expanded to larger networks. </p>
 <p>The first test created was based on a Braille example shown below so many of the tests use configurations based on these sizes. This example was chosen since it was not based on a power of 2 and had unity outputs which made debugging of the design more straightforward. </p>
 <p><a href="http://neuroph.sourceforge.net/tutorials/Braille/RecognitionOfBrailleAlphabetUsingNeuralNetworks.html" target="_blank">Braille Example</a></p>
 <h2 id="example-configuration">Example Configuration</h2>
@@ -403,15 +407,18 @@
 <li>The results directory which contains the generated rtl</li>
 <li>The scala code used to generate the network</li>
 </ul>
+<hr>
 <p>Given the nature of the tests and number of configurations, the scala code for the tests is being refactored down to only the smallest changes for the tests. The basic building blocks for the network configurations can be found in the following locations. </p>
 <ul>
 <li><a href="https://github.com/andywag/NeuralHDL/tree/master/src/test/scala/com/simplifide/generate/neural" target="_blank">Test Generator Location</a></li>
 <li><a href="https://github.com/andywag/NeuralHDL/tree/master/src/test/scala/com/simplifide/generate/neural/BasicNetworkTest.scala" target="_blank">Main Generator Test Block</a></li>
 </ul>
-<p>The generator code is based on an existing generic DSL for RTL generation and is a bit more complicated. The basic building blocks for the neural network blocks ban be found in the following location : </p>
+<hr>
+<p>The generator code is based on an internal DSL (Domain Specific Language) for RTL generation and is a bit more complicated. The basic building blocks for the neural network blocks ban be found in the following location : </p>
 <ul>
 <li><a href="https://github.com/andywag/NeuralHDL/tree/master/src/main/scala/com/simplifide/generate/blocks/neural" target="_blank">Generator Location</a></li>
 </ul>
+<hr>
 <h2 id="basic-example-testing">Basic Example Testing</h2>
 <p>The testing of the blocks is done using : </p>
 <ul>
@@ -419,72 +426,30 @@
 <li>Verilator       : Runs a verilog simulator when the test is complete</li>
 <li>Numpy           : Analyzes the results by looking at the output, taps, and error. Declares an error when the MSE of the error is greater than a user defined threshold</li>
 </ul>
-<h2 id="single-stage-neural-network">Single Stage Neural Network</h2>
-<p>This is a simple test case which contains a network with a single stage with 6 inputs, 12 outputs utilizing 6 MAC blocks.</p>
+<hr>
+<h2 id="four-stage-example">Four Stage Example</h2>
+<p>This example is a 4 stage 12x12 network. </p>
 <div class="mermaid">
 graph LR
-    Stage0[Stage - 6x12]
-    Input--&gt;Stage0
-    Stage0--&gt;Error
-    Stage0--&gt;Output
-    Error--&gt;Stage0
-</div>
-
-<ul>
-<li><a href="https://github.com/andywag/NeuralHDL/blob/master/docs/results/SingleStage.ipynb" target="_blank">Results</a></li>
-<li><a href="https://github.com/andywag/NeuralHDL/tree/master/tests/simple" target="_blank">Output Directory - Generated Source and Results</a></li>
-<li><a href="https://github.com/andywag/NeuralHDL/tree/master/src/test/scala/com/simplifide/generate/neural/SingleStageTest.scala" target="_blank">Block Generator</a></li>
-</ul>
-<h2 id="two-stage-neural-network">Two Stage Neural Network</h2>
-<p>This is a simple test case which contains a network with 2 fully connected stages.</p>
-<ol>
-<li>The first stage has 6 inputs and 12 outputs and uses 6 MAC units</li>
-<li>The second stage has 12 inputs and 6 outputs and uses 6 MAC units</li>
-</ol>
-<div class="mermaid">
-graph LR
-    Stage0[Stage - 6x12]
-    Stage1[Stage - 12x6]
-    Input--&gt;Stage0
-    Stage0--&gt;Stage1
-    Stage1--&gt;Stage0
-    Stage1--&gt;Error
-    Stage1--&gt;Output
-    Error--&gt;Stage1
-</div>
-
-
-<ul>
-<li><a href="https://github.com/andywag/NeuralHDL/blob/master/docs/results/TwoStage.ipynb" target="_blank">Results</a></li>
-<li><a href="https://github.com/andywag/NeuralHDL/tree/master/tests/full" target="_blank">Output Directory - Generated Source and Results</a></li>
-<li><a href="https://github.com/andywag/NeuralHDL/tree/master/src/test/scala/com/simplifide/generate/neural/DoubleStageTest.scala" target="_blank">Block Generator</a></li>
-</ul>
-<h2 id="three-stage-neural-network">Three Stage Neural Network</h2>
-<p>This is the first realistic test case which contains a 3 stage network with 12 hidden neurons.</p>
-<ol>
-<li>The first stage has 6 inputs and 12 outputs and uses 6 MAC units</li>
-<li>The second stage contains 12 inputs and 12 outputs and uses 6 MAC units</li>
-<li>The third stage has 12 inputs and 6 outputs and uses 6 MAC units</li>
-</ol>
-<div class="mermaid">
-graph LR
-    Stage0[Stage - 6x12]
+    Stage0[Stage - 12x12]
     Stage1[Stage - 12x12]
-    Stage2[Stage - 12x6]
+    Stage2[Stage - 12x12]
+    Stage3[Stage - 12x12]
     Input--&gt;Stage0
     Stage0--&gt;Stage1
     Stage1--&gt;Stage2
+    Stage2--&gt;Stage3
     Stage2--&gt;Stage0
-    Stage2--&gt;Error
-    Stage2--&gt;Output
-    Error--&gt;Stage2
+    Stage3--&gt;Error
+    Stage3--&gt;Output
+    Error--&gt;Stage3
 </div>
 
-
 <ul>
-<li><a href="results/DoubleStage.jpynb">Results</a></li>
-<li><a href="../../tests/hidden">Output Directory - Generated Source and Results</a></li>
-<li><a href="../../src/test/scala/com/simplifide/generate/neural/HiddenStageTest.scala">Block Generator</a></li>
+<li><a href="https://github.com/andywag/NeuralHDL/blob/master/docs/results/MultiStage.ipynb" target="_blank">Results</a></li>
+<li><a href="https://github.com/andywag/NeuralHDL/tree/master/tests/four_12_12" target="_blank">Output Directory - Generated Source and Results</a></li>
+<li><a href="https://github.com/andywag/NeuralHDL/tree/master/src/test/scala/com/simplifide/generate/neural/MultiStageTest.scala" target="_blank">Block Generator</a></li>
+<li><a href="https://github.com/andywag/NeuralHDL/blob/master/tests/four_12_12/simx.vcd" target="_blank">Waveform</a></li>
 </ul>
 
                     
@@ -533,7 +498,7 @@ graph LR
 
 <script>
 require(["gitbook"], function(gitbook) {
-    var config = {"mermaid-2":{"theme":"forest"},"highlight":{},"search":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"livereload":{}};
+    var config = {"mermaid-2":{"theme":"forest"},"katex":{},"highlight":{},"search":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"livereload":{}};
     gitbook.start(config);
 });
 </script>

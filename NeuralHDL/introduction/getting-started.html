@@ -25,6 +25,10 @@
         
     
         
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-katex/katex.min.css">
+        
+    
+        
         <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-highlight/website.css">
         
     
@@ -52,7 +56,7 @@
     <body>
         
         
-    <div class="book" data-level="1.1" data-chapter-title="Getting Started" data-filepath="introduction/getting-started.md" data-basepath=".." data-revision="Wed Jul 12 2017 06:57:26 GMT-0700 (PDT)">
+    <div class="book" data-level="1.1" data-chapter-title="Getting Started" data-filepath="introduction/getting-started.md" data-basepath=".." data-revision="Tue Jul 18 2017 23:26:12 GMT-0700 (PDT)">
     
 
 <div class="book-summary">
@@ -393,22 +397,37 @@
                     <section class="normal" id="section-">
                     
                         <h1 id="getting-started">Getting Started</h1>
-<p>The code generator is writtin in Scala and uses SBT as a build tool.  </p>
+<p>The tool is written in Scala and uses SBT as a build tool as well as Scalatest for testing. The minimal requirements for creating the cores is </p>
 <ul>
-<li><a href="http://www.scala-sbt.org/" target="_blank">SBT</a> : Build tool to create cores and tests</li>
+<li><a href="http://www.scala-sbt.org/" target="_blank">SBT</a>  Scala build tool which will automatically download test configuration</li>
+<li><a href="https://www.scala-lang.org/" target="_blank">Scala</a> Scala is also required but might be automatically downloaded through SBT</li>
+</ul>
+<hr>
+<p>Optionally an IDE is useful and the distribution contains a project file for IDEA. </p>
+<ul>
 <li><a href="https://www.jetbrains.com/idea/" target="_blank">Jetbrains IDEA</a> : Integrated Development Environment for editting</li>
 </ul>
-<p>The resulting designs are simulated and verified using open source tools. </p>
-<ol>
-<li>[Verilator] (<a href="https://www.veripool.org/wiki/verilator" target="_blank">https://www.veripool.org/wiki/verilator</a>) : Free Verilog simulator</li>
-<li>Python with Numpy and Scipy</li>
-</ol>
-<h2 id="running-basic-test">Running Basic Test</h2>
-<p>Both the generation and testing of the resulting cores is handled by scalaTest. </p>
+<hr>
+<p>The tool uses the following tools for simulation and data analysis. </p>
 <ul>
-<li>sbt test-only <code>test-name</code> --- <code>sbt test-only com.simplifide.generate.neural.DoubleStageTest</code></li>
+<li><a href="https://www.veripool.org/wiki/verilator" target="_blank">Verilator</a> : Free Verilog simulator</li>
+<li>Python with Numpy and Scipy : Used for analysis and plotting of results</li>
 </ul>
-<p>An example section of the test code is shown below. </p>
+<hr>
+<p>Other simulators should work as well but will probably require a bit of setup, test bench conversion and potentially some generator fixes. The target RTL was used for a production FPGA but new constructs have been added and the cores have not been taken through a synthesis flow. </p>
+<h2 id="running-basic-test">Running Basic Test</h2>
+<p>Running tests can be done either on the command line using SBT or inside IDEA. The command line usage is shown below.</p>
+<ul>
+<li>sbt test-only <code>test-name</code></li>
+</ul>
+<hr>
+<p>A couple of examples are shown below which run basic tests. </p>
+<ul>
+<li>sbt test-only <code>com.simplifide.generate.neural.Two6x6x6</code></li>
+<li>sbt test-only <code>com.simplifide.generate.neural.Four12</code></li>
+</ul>
+<hr>
+<p>An example section of the test code is shown below. There are multiple options for the operation of the test including plotting of the results when complete as well as waveform generation. </p>
 <pre><code class="lang-scala">
 <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Two6x6x6</span> <span class="hljs-keyword"><span class="hljs-keyword">extends</span></span> <span class="hljs-title">TwoStageTest</span> {</span>
   <span class="hljs-keyword">override</span> <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">blockName</span>:</span> <span class="hljs-type">String</span> = <span class="hljs-string">&quot;two6x6&quot;</span>
@@ -419,7 +438,6 @@
   <span class="hljs-keyword">override</span> <span class="hljs-function"><span class="hljs-keyword">val</span> <span class="hljs-title">failThreshold</span> =</span> <span class="hljs-type">Some</span>(<span class="hljs-number">0.1</span>)
 }
 </code></pre>
-<p>An example test for a two stage network is shown above. There are multiple options for the operation of the test including plotting of the results when complete as well as waveform generation. </p>
 
                     
                     </section>
@@ -467,7 +485,7 @@
 
 <script>
 require(["gitbook"], function(gitbook) {
-    var config = {"mermaid-2":{"theme":"forest"},"highlight":{},"search":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"livereload":{}};
+    var config = {"mermaid-2":{"theme":"forest"},"katex":{},"highlight":{},"search":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"livereload":{}};
     gitbook.start(config);
 });
 </script>
