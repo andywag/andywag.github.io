@@ -45,7 +45,7 @@
         
     
     
-    <link rel="next" href="../blocks/Neuron.html" />
+    <link rel="next" href="../blocks/simple.html" />
     
     
     <link rel="prev" href="../architecture/future.html" />
@@ -56,7 +56,7 @@
     <body>
         
         
-    <div class="book" data-level="4" data-chapter-title="Building Blocks" data-filepath="blocks/README.md" data-basepath=".." data-revision="Tue Jul 18 2017 23:26:12 GMT-0700 (PDT)">
+    <div class="book" data-level="4" data-chapter-title="Building Blocks" data-filepath="blocks/README.md" data-basepath=".." data-revision="Thu Jul 20 2017 17:12:06 GMT-0700 (PDT)">
     
 
 <div class="book-summary">
@@ -298,14 +298,44 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="4.1" data-path="blocks/Neuron.html">
+        <li class="chapter " data-level="4.1" data-path="blocks/simple.html">
+            
+                
+                    <a href="../blocks/simple.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.1.</b>
+                        
+                        Basic Block Example
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2" data-path="blocks/test.html">
+            
+                
+                    <a href="../blocks/test.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.2.</b>
+                        
+                        Basic Test Example
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.3" data-path="blocks/Neuron.html">
             
                 
                     <a href="../blocks/Neuron.html">
                 
                         <i class="fa fa-check"></i>
                         
-                            <b>4.1.</b>
+                            <b>4.3.</b>
                         
                         Neuron
                     </a>
@@ -313,14 +343,14 @@
             
         </li>
     
-        <li class="chapter " data-level="4.2" data-path="blocks/Sigmoid.html">
+        <li class="chapter " data-level="4.4" data-path="blocks/Sigmoid.html">
             
                 
                     <a href="../blocks/Sigmoid.html">
                 
                         <i class="fa fa-check"></i>
                         
-                            <b>4.2.</b>
+                            <b>4.4.</b>
                         
                         Sigmoid
                     </a>
@@ -328,14 +358,14 @@
             
         </li>
     
-        <li class="chapter " data-level="4.3" data-path="blocks/NeuralStage.html">
+        <li class="chapter " data-level="4.5" data-path="blocks/NeuralStage.html">
             
                 
                     <a href="../blocks/NeuralStage.html">
                 
                         <i class="fa fa-check"></i>
                         
-                            <b>4.3.</b>
+                            <b>4.5.</b>
                         
                         Neural Stage
                     </a>
@@ -396,7 +426,14 @@
                 
                     <section class="normal" id="section-">
                     
-                        
+                        <h1 id="building-blocks">Building Blocks</h1>
+<p>The blocks for this design are written in an embedded DSL inside scala. The purpose of this language is to
+allow fine grained control of the hardware generation while allowing the power of a high level language to
+allow parameterization and simulation control. The examples shown in this section will detail some the syntax
+of the language used. This is is an internal portion of the design which is not meant to be exposed to the end
+user unless they want to extend the generated cores.</p>
+<p>The concept of this DSL was to use a verilog like syntax embedded in a more powerful higher level language so in general the syntax should look verilog at the lowest level. Some of the example code in the section uses more abstract code but at the lowest level there is most likely a verilog like statement. </p>
+
                     
                     </section>
                 
@@ -409,7 +446,7 @@
         <a href="../architecture/future.html" class="navigation navigation-prev " aria-label="Previous page: Future Directions"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="../blocks/Neuron.html" class="navigation navigation-next " aria-label="Next page: Neuron"><i class="fa fa-angle-right"></i></a>
+        <a href="../blocks/simple.html" class="navigation navigation-next " aria-label="Next page: Basic Block Example"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>

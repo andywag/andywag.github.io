@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>Sigmoid | NeuralHDL</title>
+        <title>Basic Test Example | NeuralHDL</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 2.5.2">
@@ -45,10 +45,10 @@
         
     
     
-    <link rel="next" href="../blocks/NeuralStage.html" />
+    <link rel="next" href="../blocks/Neuron.html" />
     
     
-    <link rel="prev" href="../blocks/Neuron.html" />
+    <link rel="prev" href="../blocks/simple.html" />
     
 
         <script src="../gitbook/plugins/gitbook-plugin-mermaid-2/bower_components/mermaid/dist/mermaid.min.js"></script><link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-mermaid-2/bower_components/mermaid/dist/mermaid.forest.css"></link>
@@ -56,7 +56,7 @@
     <body>
         
         
-    <div class="book" data-level="4.4" data-chapter-title="Sigmoid" data-filepath="blocks/Sigmoid.md" data-basepath=".." data-revision="Thu Jul 20 2017 17:12:06 GMT-0700 (PDT)">
+    <div class="book" data-level="4.2" data-chapter-title="Basic Test Example" data-filepath="blocks/test.md" data-basepath=".." data-revision="Thu Jul 20 2017 17:12:06 GMT-0700 (PDT)">
     
 
 <div class="book-summary">
@@ -313,7 +313,7 @@
             
         </li>
     
-        <li class="chapter " data-level="4.2" data-path="blocks/test.html">
+        <li class="chapter active" data-level="4.2" data-path="blocks/test.html">
             
                 
                     <a href="../blocks/test.html">
@@ -343,7 +343,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="4.4" data-path="blocks/Sigmoid.html">
+        <li class="chapter " data-level="4.4" data-path="blocks/Sigmoid.html">
             
                 
                     <a href="../blocks/Sigmoid.html">
@@ -426,24 +426,51 @@
                 
                     <section class="normal" id="section-">
                     
-                        <h1 id="sigmoid-function">Sigmoid Function</h1>
-<p>The sigmoid function is a standard nonlinearity used for neurons. A hardware approximation of this function is shown below as an example. The approach uses 7 stage piecewise linear approximation.</p>
-<p>This block contains a sigmoid nonlinear operation based on &quot;Myers and Hutchinson&quot; piecewise linear approximation.
-There are a few slight differences in the operation to simplify things due to the floating point aspect but
-there output error has similar properties with a maximum error of ~4.8%. This block is more naturally done using
-fixed point which inherently is internally done in the internal shifters of this block</p>
-<h2 id="generator-code">Generator Code</h2>
-<p>The code used to generate this code is relatively complex and can be found below. Most of this complexity is related to the use of floating point and the effects of this operation around the zero crossing around an input of .5. This could be much simpler for a fixed point operation and given the magnitude of the error it would be correct to use fixed point.</p>
-<ul>
-<li><a href="https://github.com/andywag/NeuralHDL/tree/master/src/main/scala/com/simplifide/generate/blocks/neural//Sigmoid.scala" target="_blank">Code Generator</a></li>
-<li><a href="https://github.com/andywag/NeuralHDL/tree/master/tests/sigmoid/design/sigmoid.v" target="_blank">Verilog Output</a></li>
-</ul>
-<h2 id="testbench-code">Testbench Code</h2>
-<ul>
-<li><a href="https://github.com/andywag/NeuralHDL/tree/master/tests/sigmoid/test/testSigmoid.v" target="_blank">Testbench (Verilog)</a></li>
-<li><a href="https://github.com/andywag/NeuralHDL/tree/master/tests/sigmoid/test/testSigmoid.cpp" target="_blank">Test Wrapper (C++)</a></li>
-<li><a href="https://github.com/andywag/NeuralHDL/tree/master/src/test/scala/com/simplifide/generate/neural//SigmoidTest.scala" target="_blank">Test Generator</a></li>
-</ul>
+                        <h1 id="basic-test-description">Basic Test Description</h1>
+<p>A basic test bench is shown below. There is automatic signal connections in this tool so the creation of a test bench simply requires instantiating the module and connecting the signals with stimulus. Explanations of simple operations can be seen in the code below. This is a simple test bench but there are more complicated options available. </p>
+<p>This test bench is shown due to it&apos;s simplicity but the normal test strategy has changed a bit with new blocks. Numpy is far better than scala in terms of math so the plan going forward is to more matching/analysis operations to python. There was an initial desire to stay within a single language but in the end the choice was made to use the correct tools for the job.  </p>
+<pre><code class="lang-scala"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">NeuronTest</span> <span class="hljs-keyword"><span class="hljs-keyword">extends</span></span> <span class="hljs-title">BlockScalaTest</span> <span class="hljs-keyword"><span class="hljs-keyword">with</span></span> <span class="hljs-title">BlockTestParser</span>  {</span>
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">blockName</span>:</span><span class="hljs-type">String</span> = <span class="hljs-string">&quot;neuron&quot;</span>
+
+  <span class="hljs-function"><span class="hljs-keyword">val</span> <span class="hljs-title">dutParser</span> =</span> <span class="hljs-keyword">new</span> <span class="hljs-type">NeuronTest</span>.<span class="hljs-type">Dut</span>(blockName)
+  <span class="hljs-keyword">override</span> <span class="hljs-function"><span class="hljs-keyword">val</span> <span class="hljs-title">dut</span>:</span> <span class="hljs-type">NewEntity</span> = dutParser.createEntity
+
+  <span class="hljs-function"><span class="hljs-keyword">val</span> <span class="hljs-title">delayIndex</span> =</span> signal(<span class="hljs-type">SignalTrait</span>(<span class="hljs-string">&quot;d_index&quot;</span>,<span class="hljs-type">WIRE</span>,<span class="hljs-type">U</span>(<span class="hljs-number">31</span>,<span class="hljs-number">0</span>)))
+
+  <span class="hljs-comment">// Creation of Random Stimulus for block</span>
+  <span class="hljs-function"><span class="hljs-keyword">val</span> <span class="hljs-title">data</span> =</span> <span class="hljs-type">DataFileGenerator</span>.createData(<span class="hljs-type">Array</span>(testLength,<span class="hljs-number">1</span>),s<span class="hljs-string">&quot;$dataLocation/data&quot;</span>,<span class="hljs-type">DataFileGenerator</span>.<span class="hljs-type">RANDOM</span>)
+  <span class="hljs-function"><span class="hljs-keyword">val</span> <span class="hljs-title">tap</span>  =</span> <span class="hljs-type">DataFileGenerator</span>.createData(<span class="hljs-type">Array</span>(testLength,<span class="hljs-number">1</span>),s<span class="hljs-string">&quot;$dataLocation/tap&quot;</span>,<span class="hljs-type">DataFileGenerator</span>.<span class="hljs-type">RANDOM</span>)
+  <span class="hljs-function"><span class="hljs-keyword">val</span> <span class="hljs-title">bias</span> =</span> <span class="hljs-type">DataFileGenerator</span>.createData(<span class="hljs-type">Array</span>(testLength,<span class="hljs-number">1</span>),s<span class="hljs-string">&quot;$dataLocation/bias&quot;</span>,<span class="hljs-type">DataFileGenerator</span>.<span class="hljs-type">RANDOM</span>)
+
+  <span class="hljs-comment">// Output results to match against</span>
+  <span class="hljs-function"><span class="hljs-keyword">val</span> <span class="hljs-title">result</span> =</span> ((tap.data*data.data).d(<span class="hljs-number">1</span>) + bias.data.a(<span class="hljs-number">1</span>)).d(<span class="hljs-number">1</span>)
+  <span class="hljs-function"><span class="hljs-keyword">val</span> <span class="hljs-title">out</span>  =</span> <span class="hljs-type">DataFileGenerator</span>.createFlatten(s<span class="hljs-string">&quot;$dataLocation/out&quot;</span>,result)
+
+  /- (<span class="hljs-string">&quot;Delay the bias to line up the data&quot;</span>)
+  delayIndex := index - <span class="hljs-number">1</span>;
+
+  <span class="hljs-comment">// Drive the design signals with the created data</span>
+  <span class="hljs-function"><span class="hljs-keyword">val</span> <span class="hljs-title">dataInD</span>   =</span> dutParser.dataIn &lt;-- data
+  <span class="hljs-function"><span class="hljs-keyword">val</span> <span class="hljs-title">tapInD</span>    =</span> dutParser.tapIn  &lt;-- tap
+  <span class="hljs-function"><span class="hljs-keyword">val</span> <span class="hljs-title">biasInD</span>   =</span> dutParser.biasIn &lt;-- bias
+
+  <span class="hljs-comment">// Dump the signal to a file. </span>
+  <span class="hljs-function"><span class="hljs-keyword">val</span> <span class="hljs-title">rout</span> =</span> dutParser.dataOut ---&gt; (s<span class="hljs-string">&quot;$dataLocation/rout&quot;</span>, <span class="hljs-type">Some</span>(out), <span class="hljs-string">&quot;Neuron Output&quot;</span>)
+
+  <span class="hljs-comment">// Operations to check post run</span>
+  <span class="hljs-keyword">override</span> <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">postRun</span> =</span> {
+    <span class="hljs-function"><span class="hljs-keyword">val</span> <span class="hljs-title">output</span> =</span> rout.load()
+    <span class="hljs-function"><span class="hljs-keyword">val</span> <span class="hljs-title">error</span> =</span> <span class="hljs-type">PlotUtility</span>.plotError(output.data().asDouble(),
+      result.data().asDouble(),<span class="hljs-type">Some</span>(s<span class="hljs-string">&quot;$docLocation/results&quot;</span>))
+    assert(error.max._1 &lt; <span class="hljs-number">.05</span>)
+  }
+
+
+
+
+
+}
+</code></pre>
 
                     
                     </section>
@@ -454,10 +481,10 @@ fixed point which inherently is internally done in the internal shifters of this
         </div>
 
         
-        <a href="../blocks/Neuron.html" class="navigation navigation-prev " aria-label="Previous page: Neuron"><i class="fa fa-angle-left"></i></a>
+        <a href="../blocks/simple.html" class="navigation navigation-prev " aria-label="Previous page: Basic Block Example"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="../blocks/NeuralStage.html" class="navigation navigation-next " aria-label="Next page: Neural Stage"><i class="fa fa-angle-right"></i></a>
+        <a href="../blocks/Neuron.html" class="navigation navigation-next " aria-label="Next page: Neuron"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>

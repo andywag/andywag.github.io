@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>Sigmoid | NeuralHDL</title>
+        <title>Basic Block Example | NeuralHDL</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 2.5.2">
@@ -45,10 +45,10 @@
         
     
     
-    <link rel="next" href="../blocks/NeuralStage.html" />
+    <link rel="next" href="../blocks/test.html" />
     
     
-    <link rel="prev" href="../blocks/Neuron.html" />
+    <link rel="prev" href="../blocks/index.html" />
     
 
         <script src="../gitbook/plugins/gitbook-plugin-mermaid-2/bower_components/mermaid/dist/mermaid.min.js"></script><link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-mermaid-2/bower_components/mermaid/dist/mermaid.forest.css"></link>
@@ -56,7 +56,7 @@
     <body>
         
         
-    <div class="book" data-level="4.4" data-chapter-title="Sigmoid" data-filepath="blocks/Sigmoid.md" data-basepath=".." data-revision="Thu Jul 20 2017 17:12:06 GMT-0700 (PDT)">
+    <div class="book" data-level="4.1" data-chapter-title="Basic Block Example" data-filepath="blocks/simple.md" data-basepath=".." data-revision="Thu Jul 20 2017 17:12:06 GMT-0700 (PDT)">
     
 
 <div class="book-summary">
@@ -298,7 +298,7 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="4.1" data-path="blocks/simple.html">
+        <li class="chapter active" data-level="4.1" data-path="blocks/simple.html">
             
                 
                     <a href="../blocks/simple.html">
@@ -343,7 +343,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="4.4" data-path="blocks/Sigmoid.html">
+        <li class="chapter " data-level="4.4" data-path="blocks/Sigmoid.html">
             
                 
                     <a href="../blocks/Sigmoid.html">
@@ -426,24 +426,39 @@
                 
                     <section class="normal" id="section-">
                     
-                        <h1 id="sigmoid-function">Sigmoid Function</h1>
-<p>The sigmoid function is a standard nonlinearity used for neurons. A hardware approximation of this function is shown below as an example. The approach uses 7 stage piecewise linear approximation.</p>
-<p>This block contains a sigmoid nonlinear operation based on &quot;Myers and Hutchinson&quot; piecewise linear approximation.
-There are a few slight differences in the operation to simplify things due to the floating point aspect but
-there output error has similar properties with a maximum error of ~4.8%. This block is more naturally done using
-fixed point which inherently is internally done in the internal shifters of this block</p>
-<h2 id="generator-code">Generator Code</h2>
-<p>The code used to generate this code is relatively complex and can be found below. Most of this complexity is related to the use of floating point and the effects of this operation around the zero crossing around an input of .5. This could be much simpler for a fixed point operation and given the magnitude of the error it would be correct to use fixed point.</p>
-<ul>
-<li><a href="https://github.com/andywag/NeuralHDL/tree/master/src/main/scala/com/simplifide/generate/blocks/neural//Sigmoid.scala" target="_blank">Code Generator</a></li>
-<li><a href="https://github.com/andywag/NeuralHDL/tree/master/tests/sigmoid/design/sigmoid.v" target="_blank">Verilog Output</a></li>
-</ul>
-<h2 id="testbench-code">Testbench Code</h2>
-<ul>
-<li><a href="https://github.com/andywag/NeuralHDL/tree/master/tests/sigmoid/test/testSigmoid.v" target="_blank">Testbench (Verilog)</a></li>
-<li><a href="https://github.com/andywag/NeuralHDL/tree/master/tests/sigmoid/test/testSigmoid.cpp" target="_blank">Test Wrapper (C++)</a></li>
-<li><a href="https://github.com/andywag/NeuralHDL/tree/master/src/test/scala/com/simplifide/generate/neural//SigmoidTest.scala" target="_blank">Test Generator</a></li>
-</ul>
+                        <h1 id="simple-block-description">Simple Block Description</h1>
+<p>A description of a neuron(MAC) is shown below. This is a relatively simple example but in general what the descriptions of more complicated blocks look like. For this you can see that there is no concept of buswidths or even signal types. All operations on the signals depend on the signal type. This means that a fixed point signal will automatically create a fixed point description while a floating point signal will create a floating point signal. This leads to fully generic code.  </p>
+<pre><code class="lang-scala">
+<span class="hljs-keyword">case</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Neuron</span>(</span>proto:<span class="hljs-type">SignalTrait</span>)(<span class="hljs-keyword">implicit</span> <span class="hljs-function"><span class="hljs-keyword">val</span> <span class="hljs-title">clk</span>:</span><span class="hljs-type">ClockControl</span>) <span class="hljs-keyword">extends</span> <span class="hljs-type">ComplexSegment</span>  {
+
+
+  <span class="hljs-comment">// Input/Output Declarations</span>
+  <span class="hljs-function"><span class="hljs-keyword">val</span> <span class="hljs-title">dataOut</span>:</span><span class="hljs-type">SignalTrait</span> = proto.newSignal(name = <span class="hljs-string">&quot;data_out&quot;</span>,opType = <span class="hljs-type">OUTPUT</span>)
+  <span class="hljs-function"><span class="hljs-keyword">val</span> <span class="hljs-title">dataIn</span>:</span><span class="hljs-type">SignalTrait</span> = proto.newSignal(name = <span class="hljs-string">&quot;data_in&quot;</span>,opType = <span class="hljs-type">INPUT</span>)
+  <span class="hljs-function"><span class="hljs-keyword">val</span> <span class="hljs-title">taps</span>:</span><span class="hljs-type">SignalTrait</span> = proto.newSignal(name = <span class="hljs-string">&quot;taps&quot;</span>,opType = <span class="hljs-type">INPUT</span>)
+  <span class="hljs-function"><span class="hljs-keyword">val</span> <span class="hljs-title">bias</span>:</span><span class="hljs-type">SignalTrait</span> = proto.newSignal(name = <span class="hljs-string">&quot;bias&quot;</span>,opType = <span class="hljs-type">INPUT</span>)
+
+  <span class="hljs-function"><span class="hljs-keyword">val</span> <span class="hljs-title">internalSignal</span> =</span> signal(dataOut.newSignal(name = dataOut.appendName(<span class="hljs-string">&quot;tap_data_out&quot;</span>),<span class="hljs-type">OpType</span>.<span class="hljs-type">Signal</span>))
+
+  <span class="hljs-comment">// MAC Operation</span>
+  internalSignal := dataIn times taps
+  dataOut        := internalSignal plus bias
+
+  <span class="hljs-function"><span class="hljs-keyword">val</span> <span class="hljs-title">result</span> =</span> dataOut.newSignal(name = dataOut.appendName(<span class="hljs-string">&quot;result&quot;</span>))
+
+  <span class="hljs-comment">// Convenience information to allow automatic block testing</span>
+  <span class="hljs-comment">// This is only required when the operation needs to work both inside a module and as a segment</span>
+  <span class="hljs-keyword">override</span> <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">inputs</span>:</span> <span class="hljs-type">Seq</span>[<span class="hljs-type">SignalTrait</span>] = {
+    <span class="hljs-function"><span class="hljs-keyword">val</span> <span class="hljs-title">clkSignals</span>   =</span> clk.allSignals(<span class="hljs-type">OpType</span>.<span class="hljs-type">Input</span>)
+    <span class="hljs-function"><span class="hljs-keyword">val</span> <span class="hljs-title">inputSignals</span> =</span> <span class="hljs-type">List</span>(dataIn,taps,bias)
+    clkSignals ::: inputSignals
+  }
+
+  <span class="hljs-keyword">override</span> <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">outputs</span>:</span><span class="hljs-type">List</span>[<span class="hljs-type">SignalTrait</span>] = <span class="hljs-type">List</span>(dataOut)
+
+
+}
+</code></pre>
 
                     
                     </section>
@@ -454,10 +469,10 @@ fixed point which inherently is internally done in the internal shifters of this
         </div>
 
         
-        <a href="../blocks/Neuron.html" class="navigation navigation-prev " aria-label="Previous page: Neuron"><i class="fa fa-angle-left"></i></a>
+        <a href="../blocks/index.html" class="navigation navigation-prev " aria-label="Previous page: Building Blocks"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="../blocks/NeuralStage.html" class="navigation navigation-next " aria-label="Next page: Neural Stage"><i class="fa fa-angle-right"></i></a>
+        <a href="../blocks/test.html" class="navigation navigation-next " aria-label="Next page: Basic Test Example"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>

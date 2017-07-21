@@ -56,7 +56,7 @@
     <body>
         
         
-    <div class="book" data-level="1.2" data-chapter-title="Examples" data-filepath="introduction/basic-example.md" data-basepath=".." data-revision="Tue Jul 18 2017 23:26:12 GMT-0700 (PDT)">
+    <div class="book" data-level="1.2" data-chapter-title="Examples" data-filepath="introduction/basic-example.md" data-basepath=".." data-revision="Thu Jul 20 2017 17:12:06 GMT-0700 (PDT)">
     
 
 <div class="book-summary">
@@ -298,14 +298,44 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="4.1" data-path="blocks/Neuron.html">
+        <li class="chapter " data-level="4.1" data-path="blocks/simple.html">
+            
+                
+                    <a href="../blocks/simple.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.1.</b>
+                        
+                        Basic Block Example
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2" data-path="blocks/test.html">
+            
+                
+                    <a href="../blocks/test.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.2.</b>
+                        
+                        Basic Test Example
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.3" data-path="blocks/Neuron.html">
             
                 
                     <a href="../blocks/Neuron.html">
                 
                         <i class="fa fa-check"></i>
                         
-                            <b>4.1.</b>
+                            <b>4.3.</b>
                         
                         Neuron
                     </a>
@@ -313,14 +343,14 @@
             
         </li>
     
-        <li class="chapter " data-level="4.2" data-path="blocks/Sigmoid.html">
+        <li class="chapter " data-level="4.4" data-path="blocks/Sigmoid.html">
             
                 
                     <a href="../blocks/Sigmoid.html">
                 
                         <i class="fa fa-check"></i>
                         
-                            <b>4.2.</b>
+                            <b>4.4.</b>
                         
                         Sigmoid
                     </a>
@@ -328,14 +358,14 @@
             
         </li>
     
-        <li class="chapter " data-level="4.3" data-path="blocks/NeuralStage.html">
+        <li class="chapter " data-level="4.5" data-path="blocks/NeuralStage.html">
             
                 
                     <a href="../blocks/NeuralStage.html">
                 
                         <i class="fa fa-check"></i>
                         
-                            <b>4.3.</b>
+                            <b>4.5.</b>
                         
                         Neural Stage
                     </a>
@@ -428,7 +458,14 @@
 </ul>
 <hr>
 <h2 id="four-stage-example">Four Stage Example</h2>
-<p>This example is a 4 stage 12x12 network. </p>
+<p>There are quite a few test cases with different configurations which can mainly be found in these files</p>
+<ul>
+<li><a href="https://github.com/andywag/NeuralHDL/blob/master/src/test/scala/com/simplifide/generate/neural/SingleStageTest.scala" target="_blank">Single Stage Test</a></li>
+<li><a href="https://github.com/andywag/NeuralHDL/blob/master/src/test/scala/com/simplifide/generate/neural/TwoStageTest.scala" target="_blank">Two Stage Test</a></li>
+<li><a href="https://github.com/andywag/NeuralHDL/blob/master/src/test/scala/com/simplifide/generate/neural/MultiStageTest.scala" target="_blank">MultiStage Test</a></li>
+</ul>
+<hr>
+<p>This test is a 4 stage test with 12x12 inputs following the block diagram below. </p>
 <div class="mermaid">
 graph LR
     Stage0[Stage - 12x12]
@@ -445,12 +482,39 @@ graph LR
     Error--&gt;Stage3
 </div>
 
+<p>The results and general information about the test case can be found at the following links. </p>
 <ul>
 <li><a href="https://github.com/andywag/NeuralHDL/blob/master/docs/results/MultiStage.ipynb" target="_blank">Results</a></li>
 <li><a href="https://github.com/andywag/NeuralHDL/tree/master/tests/four_12_12" target="_blank">Output Directory - Generated Source and Results</a></li>
 <li><a href="https://github.com/andywag/NeuralHDL/tree/master/src/test/scala/com/simplifide/generate/neural/MultiStageTest.scala" target="_blank">Block Generator</a></li>
-<li><a href="https://github.com/andywag/NeuralHDL/blob/master/tests/four_12_12/simx.vcd" target="_blank">Waveform</a></li>
 </ul>
+<hr>
+<p>The generator code for this example is also shown below. This main controls a set of configurations for the test. </p>
+<pre><code class="lang-scala"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">FourSame</span>(</span>siz:<span class="hljs-type">Int</span>) <span class="hljs-keyword">extends</span> <span class="hljs-type">TwoStageTest</span> {
+  <span class="hljs-comment">// Fifo Depths</span>
+  <span class="hljs-keyword">override</span> <span class="hljs-keyword">lazy</span> <span class="hljs-function"><span class="hljs-keyword">val</span> <span class="hljs-title">dataFill</span>      =</span> <span class="hljs-type">Seq</span>(<span class="hljs-number">20</span>,<span class="hljs-number">20</span>,<span class="hljs-number">40</span>,<span class="hljs-number">20</span>)
+  <span class="hljs-keyword">override</span> <span class="hljs-keyword">lazy</span> <span class="hljs-function"><span class="hljs-keyword">val</span> <span class="hljs-title">errorFill</span>     =</span> <span class="hljs-type">Seq</span>(<span class="hljs-number">10</span>,<span class="hljs-number">10</span>,<span class="hljs-number">10</span>,<span class="hljs-number">10</span>)
+  <span class="hljs-keyword">override</span> <span class="hljs-keyword">lazy</span> <span class="hljs-function"><span class="hljs-keyword">val</span> <span class="hljs-title">outputFill</span>    =</span> <span class="hljs-type">Seq</span>(<span class="hljs-number">10</span>,<span class="hljs-number">10</span>,<span class="hljs-number">10</span>,<span class="hljs-number">10</span>)
+  <span class="hljs-keyword">override</span> <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">blockName</span>:</span> <span class="hljs-type">String</span> = s<span class="hljs-string">&quot;four_${siz}_${siz}&quot;</span>
+  <span class="hljs-keyword">override</span> <span class="hljs-keyword">lazy</span> <span class="hljs-function"><span class="hljs-keyword">val</span> <span class="hljs-title">numberNeurons</span> =</span> <span class="hljs-type">Seq</span>(siz,siz,siz,siz,siz)
+  <span class="hljs-comment">// Dimensions of Network</span>
+  <span class="hljs-keyword">override</span> <span class="hljs-keyword">lazy</span> <span class="hljs-function"><span class="hljs-keyword">val</span> <span class="hljs-title">dimensions</span> =</span> <span class="hljs-type">Seq</span>((siz,siz),(siz,siz),(siz,siz),(siz,siz))
+  <span class="hljs-comment">// Type of Taps (Random Taps with Normal Distribution)</span>
+  <span class="hljs-keyword">override</span> <span class="hljs-keyword">lazy</span> <span class="hljs-function"><span class="hljs-keyword">val</span> <span class="hljs-title">tapType</span>:</span><span class="hljs-type">BasicNetworkTest</span>.<span class="hljs-type">TAP_TYPE</span> = <span class="hljs-type">BasicNetworkTest</span>.<span class="hljs-type">RAND_TAPS</span>
+  <span class="hljs-keyword">override</span> <span class="hljs-keyword">lazy</span> <span class="hljs-function"><span class="hljs-keyword">val</span> <span class="hljs-title">tapScale</span>:</span><span class="hljs-type">Seq</span>[<span class="hljs-type">Double</span>] = <span class="hljs-type">Seq</span>(<span class="hljs-number">.5</span>,<span class="hljs-number">.5</span>,<span class="hljs-number">.5</span>,<span class="hljs-number">.5</span>)
+
+  <span class="hljs-keyword">override</span> <span class="hljs-keyword">lazy</span> <span class="hljs-function"><span class="hljs-keyword">val</span> <span class="hljs-title">tapEnable</span> =</span> <span class="hljs-type">List</span>(<span class="hljs-number">1</span>,<span class="hljs-number">1</span>,<span class="hljs-number">1</span>,<span class="hljs-number">1</span>)
+  <span class="hljs-keyword">override</span> <span class="hljs-keyword">lazy</span> <span class="hljs-function"><span class="hljs-keyword">val</span> <span class="hljs-title">biasEnable</span> =</span> <span class="hljs-type">List</span>(<span class="hljs-number">1</span>,<span class="hljs-number">1</span>,<span class="hljs-number">1</span>,<span class="hljs-number">1</span>)
+  <span class="hljs-keyword">override</span> <span class="hljs-keyword">lazy</span> <span class="hljs-function"><span class="hljs-keyword">val</span> <span class="hljs-title">gain</span> =</span> <span class="hljs-type">Seq</span>(<span class="hljs-number">15</span>,<span class="hljs-number">11</span>,<span class="hljs-number">9</span>,<span class="hljs-number">7</span>).map(x =&gt; x)
+  <span class="hljs-keyword">override</span> <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">getTestLength</span> =</span> <span class="hljs-type">BasicTestInformation</span>.tapLength*math.pow(<span class="hljs-number">2.0</span>,<span class="hljs-number">8</span>).toInt
+  <span class="hljs-keyword">override</span> <span class="hljs-keyword">lazy</span> <span class="hljs-function"><span class="hljs-keyword">val</span> <span class="hljs-title">disableNonlinearity</span> =</span> <span class="hljs-literal">true</span>
+
+}
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Four12</span> <span class="hljs-keyword"><span class="hljs-keyword">extends</span></span> <span class="hljs-title">FourSame</span>(</span><span class="hljs-number">12</span>) {
+  <span class="hljs-keyword">override</span> <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">waveformEnable</span> =</span> <span class="hljs-literal">true</span>
+}
+</code></pre>
 
                     
                     </section>
